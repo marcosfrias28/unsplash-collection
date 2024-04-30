@@ -10,7 +10,7 @@ async function getImagesBy (name) {
     .then(response => response.json())
     .then(data => data.results)
 }
-
+//TODO Env variables are not working in Astro
 export function SearchComponent (name) {
   const [keywords, setKeywords] = useState('')
 
