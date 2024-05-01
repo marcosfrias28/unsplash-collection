@@ -41,25 +41,13 @@ export function SearchComponent (name) {
         />
         <div className='absolute inset-y-0 end-0 mr-4 flex items-center ps-3 pointer-events-none'>
           <svg
-            width='24'
-            height='24'
+            className='w-6 h-6 text-gray-400 stroke-black dark:stroke-white'
             viewBox='0 0 24 24'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
           >
-            <circle
-              cx='11'
-              cy='11'
-              r='7'
-              stroke='#E5E7EB'
-              strokeWidth='2'
-            ></circle>
-            <path
-              d='M20 20L17 17'
-              stroke='#E5E7EB'
-              strokeWidth='2'
-              strokeLinecap='round'
-            ></path>
+            <circle cx='11' cy='11' r='7' strokeWidth='2'></circle>
+            <path d='M20 20L17 17' strokeWidth='2' strokeLinecap='round'></path>
           </svg>
         </div>
       </div>
