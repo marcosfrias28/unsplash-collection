@@ -1,16 +1,55 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Unsplash Collections"
+  description="Home page for Unsplash Collections"
+>
+  <main
+    slot="hero-section"
+    class="bg-[url('/hero-image.png')] bg-auto bg-no-repeat bg-center text-center w-full h-full"
+  >
+    <section class="flex flex-col gap-5 justify-center h-full">
+      <h1 class="text-5xl font-semibold">Search</h1>
+      <p class="opacity-50 text-md">
+        Search high-resolution images from Unsplash
+      </p>
+      <form class="max-w-md mx-auto w-full sm:w-[600px]">
+        <label
+          for="default-search"
+          class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          >Search</label
+        >
+        <div class="relative w-auto">
+          <input
+            type="search"
+            id="default-search"
+            class="block w-full p-6 pe-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter your keywords..."
+            required
+          />
+          <div
+            class="absolute inset-y-0 end-0 mr-4 flex items-center ps-3 pointer-events-none"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="11" cy="11" r="7" stroke="#E5E7EB" stroke-width="2"
+              ></circle>
+              <path
+                d="M20 20L17 17"
+                stroke="#E5E7EB"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+            </svg>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+</Layout>
