@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+//TODO Env variables are not working in Astro
 async function getImagesBy (name) {
   return await fetch(`https://api.unsplash.com/search/photos?query=${name}`, {
     headers: {
