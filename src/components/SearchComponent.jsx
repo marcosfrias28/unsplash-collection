@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { getImagesByName } from '../services/getImagesBy'
-import { getStaticPaths } from '../pages/[id].astro'
 
 //TODO Env variables are not working in Astro
 export function SearchComponent () {
@@ -8,14 +7,13 @@ export function SearchComponent () {
 
   async function handleSubmit (e) {
     e.preventDefault()
-    const paths = await getStaticPaths(keywords)
     const results = await getImagesByName(keywords)
-    console.log('Searching for:', keywords, results, paths)
+    console.log('Searching for:', keywords, results)
   }
   return (
     <form
       onSubmit={handleSubmit}
-      className='min-w-xl mx-auto w-full sm:w-[550px]'
+      className='min-w-xl mx-auto w-full sm:w-[550px] mt-40'
     >
       <label
         htmlFor='default-search'

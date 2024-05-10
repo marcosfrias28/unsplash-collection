@@ -1,0 +1,16 @@
+---
+import { SearchComponent } from "../components/SearchComponent";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="UnsplashBox - Search results" description="">
+  <main>
+    <div
+      class="relative w-full -z-20 h-24 bg-[url('/gradiend-bg@2x.png')] bg-center bg-no-repeat bg-cover"
+    >
+    </div>
+    <div class="absolute mx-auto w-full -top-4">
+      <SearchComponent client:visible />
+    </div>
+  </main>
+</Layout>

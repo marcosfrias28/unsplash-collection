@@ -1,5 +1,3 @@
-import { getStaticPaths } from "../pages/[id].astro";
-
 const API_KEY = await import.meta.env.PUBLIC_access_key;
 
 //TODO Env variables are not working in Astro
