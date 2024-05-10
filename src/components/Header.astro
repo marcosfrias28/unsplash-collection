@@ -1,24 +1,31 @@
-<header class="pt-5">
+---
+import Logo from "./Logo.astro";
+---
+
+<header class="pt-5 max-w-[1280px] mx-auto">
   <div
     class="transition-all flex justify-between items-center mx-5 sm:mx-20 gap-20 sm:gap-0"
   >
     <div class="">
-      <img class="min-w-24 w-48" src="/Logo.svg" alt="Logo" class="h-8 w-8" />
+      <Logo class="min-w-24 w-48 fill-[#101828] dark:fill-white" />
     </div>
     <ul class="flex space-x-4">
       <li>
         <a
-          class="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-100"
-          href="/">Home</a
+          class="transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white px-4 py-2 rounded-lg dark:hover:bg-white/20"
+          href="/"
+          ><label>
+            <input class="hidden" type="radio" name="nav-item" />Home
+          </label></a
         >
       </li>
       <li>
         <a
-          class="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-100"
+          class="text-gray-600 hover:text-gray-900 dark:hover:text-white px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/20"
           href="/collections">Collections</a
         >
       </li>
     </ul>
   </div>
-  <hr class="border-1 border-gray-300 mt-5" />
 </header>
+<hr class="border-1 border-gray-300 mt-5" />

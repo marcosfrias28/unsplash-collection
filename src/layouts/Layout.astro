@@ -18,43 +18,25 @@ const { title, description }: Props = Astro.props;
     <title>{title}</title>
   </head>
 
-  <body class="w-full h-full">
+  <body>
     <Header />
-    <slot name="hero-section" />
     <slot />
   </body>
 </html>
 
 <style>
-  html {
+  body {
     font-family: system-ui, sans-serif;
     line-height: 1.5;
-    height: 100%;
+    height: 100dvh;
     max-height: 100dvh;
     background-color: white;
     color: rgba(128, 128, 128, 0.797);
   }
   @media (prefers-color-scheme: dark) {
-    html {
+    body {
       background-color: #121826;
       color: white;
-    }
-  }
-  text-gray-900
-    dark:text-white
-    bg-white
-    dark:bg-[#121826]
-    @preference-color-scheme
-    dark {
-    html {
-      background-color: #f7fafc;
-      color: #1a202c;
-    }
-  }
-  @color-mode dark {
-    html {
-      background-color: #121826;
-      color: #e2e8f0;
     }
   }
 </style>
