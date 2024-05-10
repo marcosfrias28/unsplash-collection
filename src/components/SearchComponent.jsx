@@ -1,6 +1,11 @@
 import { useState } from 'react'
 
-const API_KEY = import.meta.env.PUBLIC_UNSPLASH_ACCESS_KEY
+let API_KEY = ''
+if (import.meta.env.DEV) {
+  API_KEY = import.meta.env.PUBLIC_UNSPLASH_ACCESS_KEY
+} else {
+  API_KEY = import.meta.env.UNSPLASH_ACCESS_KEY
+}
 
 //TODO Env variables are not working in Astro
 async function getImagesBy (name) {
