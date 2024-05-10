@@ -1,25 +1,16 @@
 import { useState } from 'react'
+import { getImagesByName } from '../services/getImagesBy'
+import { getStaticPaths } from '../pages/[id].astro'
 
-const API_KEY = await import.meta.env.PUBLIC_access_key
-
-//TODO Env variables are not working in Astro
-async function getImagesBy (name) {
-  return await fetch(`https://api.unsplash.com/search/photos?query=${name}`, {
-    headers: {
-      Authorization: `Client-ID ${API_KEY}`
-    }
-  })
-    .then(response => response.json())
-    .then(data => data.results)
-}
 //TODO Env variables are not working in Astro
 export function SearchComponent () {
   const [keywords, setKeywords] = useState('')
 
   async function handleSubmit (e) {
     e.preventDefault()
-    const results = await getImagesBy(keywords)
-    console.log('Searching for:', keywords, results)
+    const paths = await getStaticPaths(keywords)
+    const results = await getImagesByName(keywords)
+    console.log('Searching for:', keywords, results, paths)
   }
   return (
     <form
@@ -41,7 +32,7 @@ export function SearchComponent () {
           placeholder='Enter your keywords...'
           required
         />
-        <div className='absolute inset-y-0 end-0 mr-4 flex items-center ps-3 pointer-events-none'>
+        <button className='absolute cursor-pointer inset-y-0 end-0 mr-4 flex items-center ps-3 pointer-events-none'>
           <svg
             className='w-6 h-6 text-gray-400 stroke-black dark:stroke-white'
             viewBox='0 0 24 24'
@@ -51,7 +42,7 @@ export function SearchComponent () {
             <circle cx='11' cy='11' r='7' strokeWidth='2'></circle>
             <path d='M20 20L17 17' strokeWidth='2' strokeLinecap='round'></path>
           </svg>
-        </div>
+        </button>
       </div>
     </form>
   )

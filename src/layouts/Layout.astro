@@ -1,4 +1,5 @@
 ---
+import ViewTransitions from "astro/components/ViewTransitions.astro";
 import Header from "../components/Header.astro";
 
 interface Props {
@@ -16,27 +17,27 @@ const { title, description }: Props = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
 
   <body>
     <Header />
     <slot />
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+        height: 100dvh;
+        max-height: 100dvh;
+        background-color: white;
+        color: rgba(128, 128, 128, 0.797);
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #121826;
+          color: white;
+        }
+      }
+    </style>
   </body>
 </html>
-
-<style>
-  body {
-    font-family: system-ui, sans-serif;
-    line-height: 1.5;
-    height: 100dvh;
-    max-height: 100dvh;
-    background-color: white;
-    color: rgba(128, 128, 128, 0.797);
-  }
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: #121826;
-      color: white;
-    }
-  }
-</style>
