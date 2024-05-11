@@ -10,7 +10,6 @@ export function SearchComponent () {
     if ((window.location.href = '/')) {
       window.location.href = `/searchresult?keywords=${keywords}`
     }
-    getImagesByKeywords(keywords)
   }
 
   return (
