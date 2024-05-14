@@ -13,7 +13,7 @@ export function SearchComponent () {
     <form
       action={`/search?keywords=${keywords}`}
       onSubmit={e => handleSubmit(e)}
-      className='min-w-xl mx-auto w-full sm:w-[550px]'
+      className='relative mx-auto w-[300px] sm:w-[550px]'
     >
       <label
         htmlFor='default-search'
@@ -21,13 +21,12 @@ export function SearchComponent () {
       >
         Search
       </label>
-      <div className='relative w-full'>
         <input
           onChange={e => setInput(e.target.value)}
           value={'' || input}
           type='search'
           id='default-search'
-          className='block w-full p-6 pe-10 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+          className='w-[400px] sm:w-full p-6 pe-10 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
           placeholder='Enter your keywords...'
           required
         />
@@ -42,7 +41,6 @@ export function SearchComponent () {
             <path d='M20 20L17 17' strokeWidth='2' strokeLinecap='round'></path>
           </svg>
         </button>
-      </div>
     </form>
   )
 }

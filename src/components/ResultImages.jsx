@@ -25,21 +25,21 @@ export function ResultImages () {
 
 
   return (
-    <section className="grid auto-rows-[192px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6">
+    <section className="grid auto-rows-[140px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6">
   {searchResults?.map(({id, urls, alt_description}, i) => (
     <picture
       key={id}
-      className={`hover:scale-105 transition-all ease-in row-span-1 rounded-xl bg-neutral-100 dark:bg-neutral-900 ${
+      className={`hover:scale-105 hover:border-2 hover:border-zinc-600 hover:shadow-2xl hover:shadow-zinc-900 transition-all ease-in row-span-1 rounded-xl bg-neutral-100 dark:bg-neutral-900 ${
         i === 3 || i === 5 || i === 10 ? "col-span-1 lg:col-span-2" : ""
       } ${
-        i === 2 || i === 5 || i === 10 || i === 11 ? "row-span-1 lg:row-span-2" : ""
+        i === 2 || i === 5 || i === 10 || i === 11 ? "row-span-2 sm:row-span-3 lg:row-span-4" : "row-span-2"
       }`}
     >
         <img
           id={id}
           src={urls.regular}
           alt={alt_description}
-          className='cursor-pointer object-cover w-full h-full rounded-xl '
+          className='cursor-pointer transition-all object-cover w-full h-full rounded-xl '
         />
     </picture>
   ))}
