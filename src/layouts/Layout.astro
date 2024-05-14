@@ -1,7 +1,6 @@
 ---
 import ViewTransitions from "astro/components/ViewTransitions.astro";
-import Header from "../components/Header.astro";
-
+import Header from "@/components/Header.astro";
 interface Props {
   title: string;
   description: string;
@@ -22,7 +21,10 @@ const { title, description }: Props = Astro.props;
 
   <body>
     <Header />
-    <slot />
+    <main class="h-full max-h-[1280px]">
+      <slot />
+    </main>
+    <footer></footer>
     <style>
       body {
         font-family: system-ui, sans-serif;

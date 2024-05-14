@@ -1,14 +1,14 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { SearchComponent } from "../components/SearchComponent.jsx";
+import Layout from "@/layouts/Layout.astro";
+import { SearchComponent } from "@/components/SearchComponent.jsx";
 ---
 
 <Layout
   title="Unsplash Collections"
   description="Home page for Unsplash Collections"
 >
-  <main
-    class="max-w-[1280px] mx-auto flex justify-center items-center bg-[url('/hero-image.png')] bg-contain bg-no-repeat bg-center text-center h-full"
+  <section
+    class="mx-auto flex justify-center items-center bg-[url('/hero-image.png')] bg-contain bg-no-repeat bg-center text-center h-full"
   >
     <div></div>
     <section
@@ -24,5 +24,5 @@ import { SearchComponent } from "../components/SearchComponent.jsx";
         transition:persist
       />
     </section>
-  </main>
+  </section>
 </Layout>

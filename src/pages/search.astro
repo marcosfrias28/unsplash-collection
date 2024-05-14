@@ -5,12 +5,12 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="UnsplashBox - Search results" description="">
-  <main class="relative">
+  <section class="relative">
     <div
       class="w-full -z-20 h-24 bg-[url('/gradiend-bg@2x.png')] bg-center bg-no-repeat bg-cover"
     >
     </div>
-    <div class="absolute mx-auto w-full top-16">
+    <div class="absolute mx-10 w-full top-16 sm:mx-auto">
       <SearchComponent
         client:load
         transition:name="search-form"
@@ -18,5 +18,5 @@ import Layout from "../layouts/Layout.astro";
       />
     </div>
     <ResultImages client:visible transition:name="images" transition:persist />
-  </main>
+  </section>
 </Layout>

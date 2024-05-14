@@ -1,19 +1,17 @@
+import { useState } from 'react'
 import { useKeywords } from '../hooks/useKeywords'
-import { getImagesByKeywords } from '../services/getImagesBy'
 
 //TODO Env variables are not working in Astro
 export function SearchComponent () {
+  const [input, setInput] = useState('')
   const { keywords, setKeywords } = useKeywords()
 
   function handleSubmit (e) {
-    e.preventDefault()
-    if ((window.location.href = '/')) {
-      window.location.href = `/searchresult?keywords=${keywords}`
-    }
-  }
-
+    setKeywords(e.target[0].value)
+   }
   return (
     <form
+      action={`/search?keywords=${keywords}`}
       onSubmit={e => handleSubmit(e)}
       className='min-w-xl mx-auto w-full sm:w-[550px]'
     >
@@ -25,8 +23,8 @@ export function SearchComponent () {
       </label>
       <div className='relative w-full'>
         <input
-          onChange={e => setKeywords(e.target.value)}
-          value={keywords}
+          onChange={e => setInput(e.target.value)}
+          value={'' || input}
           type='search'
           id='default-search'
           className='block w-full p-6 pe-10 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
