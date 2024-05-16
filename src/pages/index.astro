@@ -18,11 +18,9 @@ import { SearchComponent } from "@/components/SearchComponent.jsx";
       <p class="opacity-50 text-md">
         Search high-resolution images from Unsplash
       </p>
-      <SearchComponent
-        client:load
-        transition:name="search-form"
-        transition:persist
-      />
+      <div transition:name="search-form" class="mx-10 w-full top-16 sm:mx-auto">
+        <SearchComponent client:load transition:persist />
+      </div>
     </section>
   </section>
 </Layout>

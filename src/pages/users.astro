@@ -1,0 +1,16 @@
+---
+import { db, Users } from "astro:db";
+
+const users = await db.select().from(Users);
+---
+
+<h2>Comments</h2>
+
+{
+  users.map(({ id, username, password, email }) => (
+    <article id={id}>
+      <p>Author: {username}</p>
+      <p>{password}</p>
+    </article>
+  ))
+}

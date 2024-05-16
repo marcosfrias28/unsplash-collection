@@ -1,0 +1,79 @@
+---
+import Plus from "@/components/icons/Plus";
+import Download from "@/components/icons/Download";
+import Remove from "@/components/icons/RemoveCollection";
+import Layout from "@/layouts/Layout.astro";
+
+const { id } = Astro.params;
+---
+
+<Layout
+  title="Unsplash Collections - Images preview and download"
+  description="Unsplash Collections"
+>
+  <section
+    class="grid grid-cols-1 lg:grid-cols-2 grid-row-1 mx-auto max-w-[1280px] px-7 py-20 md:p-32 gap-5"
+  >
+    <figure
+      transition:name={`image ${id}`}
+      class="w-full sm:w-[555px] h-[830px] bg-cleargray dark:bg-zinc-800 transition-color rounded-lg place-self-center"
+    >
+      <img
+        id={`image${id}`}
+        class="object-cover w-full h-full rounded-xl"
+        src={"regular"}
+        alt={"alt_description"}
+      />
+      <figcaption class="p-4">Image Description</figcaption>
+    </figure>
+    <article class="sm:pl-10 place-self-start flex flex-col gap-5">
+      <picture class="flex flex-row gap-4 items-center mb-5">
+        <img
+          class="w-12 h-12 rounded-full bg-slate-100"
+          src=""
+          alt="Photo profile of the Author / Owner of this photo"
+        />
+        <h3 class="font-bold text-black dark:text-white">Author Name</h3>
+      </picture>
+      <small class="text-sm">Published on October</small>
+      <div class="flex flex-row gap-4">
+        <div
+          class="rounded-md group flex flex-row gap-2 bg-cleargray text-black px-4 py-2"
+        >
+          <Plus />
+          <button class=""> Add to Collection</button>
+        </div>
+        <div
+          class="rounded-md group flex flex-row gap-2 bg-cleargray text-black px-4 py-2 items-center justify-center"
+        >
+          <Download />
+          <button class="">Download</button>
+        </div>
+      </div>
+      <section id="Collections">
+        <h3 class="text-xl">Collections</h3>
+        <div class="w-full sm:w-[555px] flex flex-col gap-4">
+          <div
+            class="group rounded-xl p-2 flex flex-row justify-between hover:bg-cleargray dark:hover:bg-zinc-800 transition-colors duration-300"
+          >
+            <aside class="flex flex-row gap-4">
+              <picture class="h-16 w-16 rounded-lg bg-slate-100">
+                <img src="" alt="" />
+              </picture>
+              <div>
+                <p class="font-bold text-black dark:text-white">
+                  Collection Name
+                </p>
+                <small>29 Photos</small>
+              </div>
+            </aside>
+            <Remove
+              client:visible
+              class="group-hover:opacity-100 opacity-0 transition-opacity justify-self-end self-center flex flex-row gap-2 justify-center items-center"
+            />
+          </div>
+        </div>
+      </section>
+    </article>
+  </section>
+</Layout>
