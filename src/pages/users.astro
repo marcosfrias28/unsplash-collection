@@ -1,16 +1,20 @@
 ---
-import { db, Users } from "astro:db";
+import Layout from "@/layouts/Layout.astro";
+import { db, Users, eq } from "astro:db";
 
-const users = await db.select().from(Users);
+const users = await db.select().from(Users).where();
 ---
 
-<h2>Comments</h2>
+<Layout title="list of Users" description="Astro:db test">
+  <h2>Users</h2>
 
-{
-  users.map(({ id, username, password, email }) => (
-    <article id={id}>
-      <p>Author: {username}</p>
-      <p>{password}</p>
-    </article>
-  ))
-}
+  {
+    users.map(({ id, username, password, mail }) => (
+      <article class=" bg-cleargray text-black my-5" id={id}>
+        <small>{id}</small>
+        <p>Username: {username}</p>
+        <p>Passwor: *****</p>
+      </article>
+    ))
+  }
+</Layout>

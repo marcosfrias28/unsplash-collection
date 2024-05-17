@@ -1,21 +1,36 @@
 import { column, defineDb, defineTable } from 'astro:db';
 
-const Users = defineTable({
+const User = defineTable({
     columns: {
-        id: column.number(),
-        username: column.text({primaryKey: true}),
-        password: column.text(),
-        mail: column.text()
+        id: column.number({ primaryKey: true, autoIncrement: true }),
+        username: column.text({ unique: true }),
+        email: column.text({ unique: true }),
+        password_hash: column.text(),
+        created_at: column.date(),
     }
-})
+});
 
-const Collections = defineTable({
+const ShortenedUrls = defineTable({
     columns: {
-        id: column.number({primaryKey: true}),
+        url_id: column.number({ primaryKey: true, autoIncrement: true }),
+        user_id: column.number(),
+        original_url: column.text(),
+        shortened_url: column.text({ unique: true }),
+        created_at: column.date()
     }
-})
+});
+
+const UserSessions = defineTable({
+    columns: {
+        session_id: column.number({ primaryKey: true, autoIncrement: true }),
+        user_id: column.number(),
+        session_token: column.text({ unique: true }),
+        created_at: column.date(),
+        expires_at: column.date()
+    }
+});
 
 
 export default defineDb({
-  tables: { Users, Collections },
+  tables: { User, ShortenedUrls, UserSessions },
 })
