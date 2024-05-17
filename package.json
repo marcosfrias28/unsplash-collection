@@ -3,10 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "dev": "astro dev --remote",
+    "start": "astro dev --remote",
+    "build": "astro build --remote",
+    "preview": "astro preview --remote",
     "astro": "astro"
   },
   "dependencies": {
