@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import { db, Users, eq } from "astro:db";
 
-const users = await db.select().from(Users).where();
+const users = await db.select().from(Users);
 ---
 
 <Layout title="list of Users" description="Astro:db test">
