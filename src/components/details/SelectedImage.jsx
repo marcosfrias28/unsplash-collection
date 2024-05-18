@@ -1,12 +1,11 @@
-import { useMediaStore } from "@/store/MediaStore";
+import useSelectedImage from "@/hooks/useSelectedImage";
 
 function SelectedImage({ id }) {
-  const { searchResults } = useMediaStore((state) => state);
-  const selectedPhoto = searchResults.find((image) => image.id === id);
+  const selectedPhoto = useSelectedImage(id);
 
   return (
     <img
-      className="object-cover w-full h-full rounded-xl"
+      className="object-cover w-full h-full rounded-lg"
       src={selectedPhoto?.link}
       alt={selectedPhoto?.alt_description}
     />

@@ -38,7 +38,7 @@ export function ImagesLayout() {
             id: id,
             urls: {
               small: urls.small,
-              regular: urls.regular,
+              regular: urls.small,
             },
             alt_description: alt_description || "",
             user: {
