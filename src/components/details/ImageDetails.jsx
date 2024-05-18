@@ -5,7 +5,7 @@ import Remove from "../icons/RemoveCollection";
 
 export function ImageDetails({ id }) {
   if (!id) return;
-  const { searchResults } = useMediaStore((state) => state);
+  const { searchResults, default } = useMediaStore((state) => state);
   const selectedPhoto = searchResults.find((image) => image.id === id);
 
   const { urls, alt_description, user, created_at, link } = selectedPhoto;

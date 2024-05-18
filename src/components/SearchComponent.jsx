@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useMediaStore } from "../store/MediaStore";
-import { useStore } from "zustand";
 import axios from "axios";
 
 //TODO Env variables are not working in Astro
 export function SearchComponent() {
   const [input, setInput] = useState("");
 
-  const { keywords, setKeywords } = useStore(useMediaStore, (state) => state);
+  const { keywords, setKeywords } = useMediaStore((state) => state);
 
   function handleSubmit(e) {
     setKeywords(e.target[0].value);
@@ -27,7 +26,7 @@ export function SearchComponent() {
       <div className="relative w-full">
         <input
           onChange={(e) => setInput(e.target.value)}
-          defaultValue={input}
+          value={input || keywords}
           type="search"
           id="default-search"
           className="w-[400px] sm:w-full p-6 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

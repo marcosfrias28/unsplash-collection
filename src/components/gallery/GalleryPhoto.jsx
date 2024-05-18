@@ -10,9 +10,15 @@ if (import.meta.env.PROD) {
   API_KEY = import.meta.env.PUBLIC_UNSPLASH_API_KEY;
 }
 
-export function GalleryPhoto({ index }) {
-  const { keywords, searchResults, loading, setSearchResults, setLoading } =
-    useMediaStore((state) => state);
+export function ImagesLayout() {
+  const {
+    loading,
+    setLoading,
+    keywords,
+    defaultResults,
+    searchResults,
+    setSearchResults,
+  } = useMediaStore((state) => state);
 
   useEffect(() => {
     setLoading(true);
@@ -50,19 +56,38 @@ export function GalleryPhoto({ index }) {
       .catch((error) => console.log(error));
   }, [keywords]);
 
+  const gallery = searchResults || defaultResults;
+
   return (
-    <a href={searchResults[index].id} className={`${loading ? "blur-lg" : ""}`}>
-      <img
-        src={
-          loading === true
-            ? searchResults[index].urls.thumbnail
-            : searchResults[index].urls.regular
-        }
-        alt={searchResults[index].alt_description}
-        className={`object-cover ${
-          loading ? " animate-pulse" : "hover:scale-105 duration-150"
-        }  w-full h-full rounded-xl cursor-pointer transition-all duration-1000`}
-      />
-    </a>
+    <>
+      {gallery.map((actualImage, i) => {
+        const { id, urls, alt_description } = actualImage;
+        return (
+          <picture
+            key={id}
+            className={`hover:shadow-md drop-shadow-xl overflow-hidden hover:shadow-zinc-900 transition-all ease-in row-span-1 rounded-xl bg-neutral-700 ${
+              i === 3 || i === 5 || i === 10 ? "col-span-1 lg:col-span-2" : ""
+            } ${
+              i === 2 || i === 5 || i === 10 || i === 11
+                ? "row-span-2 sm:row-span-3 lg:row-span-4"
+                : "row-span-2"
+            }`}
+          >
+            <a href={id}>
+              <img
+                id={id}
+                src={urls.regular}
+                alt={alt_description}
+                className={`object-cover ${
+                  loading
+                    ? "blur-3xl animate-pulse"
+                    : "hover:scale-105 duration-150"
+                }  w-full h-full rounded-xl cursor-pointer transition-all duration-1000`}
+              />
+            </a>
+          </picture>
+        );
+      })}
+    </>
   );
 }

@@ -1,5 +1,5 @@
 ---
-import { GalleryPhoto } from "@/components/gallery/GalleryPhoto";
+import { ImagesLayout } from "@/components/gallery/GalleryPhoto";
 import { SearchComponent } from "../components/SearchComponent";
 import Layout from "../layouts/Layout.astro";
 import { defaultImages } from "@/services/data";
@@ -15,30 +15,12 @@ import { defaultImages } from "@/services/data";
       class="absolute mx-10 w-full top-16 sm:mx-auto"
       transition:name="search-form"
     >
-      <SearchComponent client:visible transition:persist />
+      <SearchComponent client:load transition:persist />
     </div>
     <section
       class="grid auto-rows-[140px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6"
     >
-      {
-        defaultImages.map((_, i) => {
-          return (
-            <figure
-              transition:name="gallery-photo"
-              class={`hover:shadow-md drop-shadow-xl overflow-hidden hover:shadow-zinc-900 transition-all ease-in row-span-1 rounded-xl bg-neutral-700 ${
-                i === 3 || i === 5 || i === 10 ? "col-span-1 lg:col-span-2" : ""
-              } ${
-                i === 2 || i === 5 || i === 10 || i === 11
-                  ? "row-span-2 sm:row-span-3 lg:row-span-4"
-                  : "row-span-2"
-              }`}
-            >
-              <GalleryPhoto index={i} client:visible />
-            </figure>
-          );
-        })
-      }
-      <!-- <ImageGallery client:visible transition:persist /> -->
+      <ImagesLayout client:idle transition:persist />
     </section>
   </section>
 </Layout>
