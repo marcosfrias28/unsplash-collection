@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { defaultImages } from "@/services/data";
 
-export const useMediaStore = create((set) => ({
+export const useMediaStore = create((set, get) => ({
   loading: true,
   keywords: "",
   defaultResults: defaultImages,

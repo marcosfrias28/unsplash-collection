@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMediaStore } from "../store/MediaStore";
 import axios from "axios";
+import { useShallow } from "zustand/react/shallow";
 
 //TODO Env variables are not working in Astro
 export function SearchComponent() {
   const [input, setInput] = useState("");
 
-  const { keywords, setKeywords } = useMediaStore((state) => state);
+  const { keywords, setKeywords } = useMediaStore(useShallow((state) => state));
 
   function handleSubmit(e) {
     setKeywords(e.target[0].value);

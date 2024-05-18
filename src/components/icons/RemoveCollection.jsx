@@ -1,6 +1,6 @@
 function Remove(props) {
   return (
-    <button className="group-hover:opacity-100 opacity-0 transition-opacity justify-self-end self-center flex gap-2 justify-center items-center">
+    <button className="cursor-pointer group-hover:opacity-100 opacity-0 transition-opacity justify-self-end self-center flex gap-2 justify-center items-center">
       <svg
         width="16"
         height="16"

@@ -1,6 +1,7 @@
 import { useMediaStore } from "@/store/MediaStore";
 import axios from "axios";
 import { useEffect } from "react";
+import { useShallow } from "zustand/react/shallow";
 
 let API_KEY = "";
 
@@ -18,9 +19,10 @@ export function ImagesLayout() {
     defaultResults,
     searchResults,
     setSearchResults,
-  } = useMediaStore((state) => state);
+  } = useMediaStore(useShallow((state) => state));
 
   useEffect(() => {
+    if (!keywords) return;
     setLoading(true);
     axios
       .get(

@@ -1,6 +1,6 @@
 function AddToCollection() {
   return (
-    <button class="flex gap-2 items-center justify-center cursor-pointer">
+    <button className="flex gap-2 items-center justify-center cursor-pointer">
       <svg
         width="16"
         height="16"
