@@ -1,40 +1,38 @@
 import { useState } from "react";
 import { useMediaStore } from "../store/MediaStore";
-import axios from "axios";
-import { useShallow } from "zustand/react/shallow";
 
 //TODO Env variables are not working in Astro
 export function SearchComponent() {
   const [input, setInput] = useState("");
 
-  const { keywords, setKeywords } = useMediaStore(useShallow((state) => state));
+  const keywords = useMediaStore((state) => state.keywords);
+  const setKeywords = useMediaStore((state) => state.setKeywords);
+  const getImages = useMediaStore((state) => state.getImages);
+  const setLoading = useMediaStore((state) => state.setLoading);
 
   function handleSubmit(e) {
     setKeywords(e.target[0].value);
+    setLoading(true);
+    getImages();
   }
   return (
-    <form
-      action={`/search?keywords=${keywords}`}
-      onSubmit={(e) => handleSubmit(e)}
-      className="min-w-xl mx-auto w-full sm:w-[550px]"
-    >
+    <form action={`/search`} onSubmit={(e) => handleSubmit(e)}>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium sr-only dark:text-white"
       >
         Search
       </label>
-      <div className="relative w-full">
+      <div className="flex justify-between w-full mx-auto text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <input
           onChange={(e) => setInput(e.target.value)}
-          value={input || keywords}
+          placeholder={keywords || "Enter your keywords..."}
           type="search"
           id="default-search"
-          className="w-[400px] sm:w-full p-6 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Enter your keywords..."
+          className="w-full p-6"
           required
         />
-        <button className="absolute cursor-pointer inset-y-0 end-0 mr-4 flex items-center ps-3 pointer-events-none">
+        <button className="cursor-pointer mr-4 flex items-center ps-3">
           <svg
             className="w-6 h-6 text-gray-400 stroke-black dark:stroke-white"
             viewBox="0 0 24 24"
@@ -44,6 +42,7 @@ export function SearchComponent() {
             <circle cx="11" cy="11" r="7" strokeWidth="2"></circle>
             <path d="M20 20L17 17" strokeWidth="2" strokeLinecap="round"></path>
           </svg>
+          Search
         </button>
       </div>
     </form>

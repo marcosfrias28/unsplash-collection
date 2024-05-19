@@ -26,5 +26,12 @@
     "react-router-dom": "^6.23.1",
     "tailwindcss": "^3.4.3",
     "zustand": "^4.5.2"
-  }
+  },
+  "devDependencies": {
+    "js-standard": "^1.0.1",
+    "ts-standard": "^12.0.2"
+  },
+  "include": [
+    "./node_modules/standard/eslintrc.json"
+  ]
 }

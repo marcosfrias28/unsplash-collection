@@ -1,14 +1,14 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import SelectedImage from "@/components/details/SelectedImage";
+import SelectedImage from "@/components/details/SelectedImage.jsx";
 import {
   AuthorName,
   PhotoProfile,
   PublishedDate,
-} from "@/components/details/Author";
-import AddToCollection from "@/components/details/AddToCollection";
-import Download from "@/components/details/Download";
-import Remove from "@/components/icons/RemoveCollection";
+} from "@/components/details/Author.jsx";
+import AddToCollection from "@/components/details/AddToCollection.jsx";
+import Download from "@/components/details/Download.jsx";
+import Remove from "@/components/details/RemoveCollection.jsx";
 
 const { id } = Astro.params;
 ---
@@ -28,7 +28,10 @@ const { id } = Astro.params;
     </figure>
 
     <article class="sm:pl-10 place-self-start flex flex-col gap-5">
-      <picture class="flex flex-row gap-4 items-center mb-5">
+      <picture
+        transition:name={`image ${id}`}
+        class="flex flex-row gap-4 items-center mb-5"
+      >
         <PhotoProfile id={id} client:visible />
         <AuthorName id={id} client:visible />
       </picture>

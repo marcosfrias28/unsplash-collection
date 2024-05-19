@@ -1,8 +1,7 @@
 ---
-import { ImagesLayout } from "@/components/gallery/GalleryPhoto";
+import { ImagesLayout } from "@/components/gallery/ImagesLayout";
 import { SearchComponent } from "../components/SearchComponent";
 import Layout from "../layouts/Layout.astro";
-import { defaultImages } from "@/services/data";
 ---
 
 <Layout title="UnsplashBox - Search results" description="">
@@ -20,7 +19,7 @@ import { defaultImages } from "@/services/data";
     <section
       class="grid auto-rows-[140px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6"
     >
-      <ImagesLayout client:idle transition:persist />
+      <ImagesLayout client:visible transition:persist />
     </section>
   </section>
 </Layout>
