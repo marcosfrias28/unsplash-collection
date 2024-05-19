@@ -1,11 +1,11 @@
 import { useMediaStore } from "@/store/MediaStore";
-import { useEffect } from "react";
 
 export function ImagesLayout() {
   const loading = useMediaStore((state) => state.loading);
   const defaultResults = useMediaStore((state) => state.defaultResults);
   const searchResults = useMediaStore((state) => state.searchResults);
-  
+  const setSelectedImage = useMediaStore((state) => state.setSelectedImage);
+
   const gallery = searchResults.lenght >= 1 ? searchResults : defaultResults;
 
   return (
@@ -14,6 +14,7 @@ export function ImagesLayout() {
         const { id, urls, alt_description } = actualImage;
         return (
           <picture
+            onClick={() => setSelectedImage(actualImage)}
             transition:name={`image ${id}`}
             key={id}
             className={`hover:shadow-md drop-shadow-xl overflow-hidden hover:shadow-zinc-900 transition-all ease-in row-span-1 rounded-xl bg-neutral-700 ${

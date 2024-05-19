@@ -8,17 +8,21 @@ interface mediaTypes {
   keywords: string;
   defaultResults: any[];
   searchResults: any[];
+  selectedImage: object | null;
   setKeywords: (keywords: string) => void;
   getImages: (keywords: string) => void;
   setLoading: (loading: boolean) => void;
+  setSelectedImage: (selectedImage: object) => void;
 }
 
 export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) => ({
     loading: true,
     keywords: "",
     defaultResults: defaultImages,
+    selectedImage: null,
     searchResults: [],
     setKeywords: (keywords) => set({ keywords }),
+    setSelectedImage: (selectedImage) => set({ selectedImage }),
     setLoading: (loading) => set({ loading }),
     getImages: () => {
       console.log("getImages");

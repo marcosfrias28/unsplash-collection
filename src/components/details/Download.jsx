@@ -1,11 +1,10 @@
-import useSelectedImage from "@/hooks/useSelectedImage";
+import { useMediaStore } from "@/store/MediaStore";
 
-function Download({ id }) {
-  const currentImage = useSelectedImage(id);
-
+function Download() {
+  const selectedImage = useMediaStore((state) => state.selectedImage);
   return (
     <a
-      href={currentImage?.link}
+      href={selectedImage?.link}
       target="_blank"
       className="rounded-md cursor-pointer group flex flex-row gap-2 bg-cleargray text-black px-4 py-2 items-center justify-center"
     >
