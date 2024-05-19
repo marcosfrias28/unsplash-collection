@@ -39,11 +39,7 @@ const { id } = Astro.params;
       </picture>
       <PublishedDate client:visible />
       <div class="flex flex-row gap-4 flex-wrap">
-        <div
-          class="rounded-md group flex flex-row gap-2 bg-cleargray text-black px-4 py-2"
-        >
-          <AddToCollection client:visible />
-        </div>
+        <AddToCollection client:visible />
         <Download client:visible />
       </div>
       <section id="Collections">

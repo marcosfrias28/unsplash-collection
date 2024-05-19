@@ -2,33 +2,44 @@
 import Logo from "./icons/Logo.astro";
 ---
 
-<header class="relative top-0 pt-5 max-w-[1440px] mx-auto z-50">
+<header
+  transition:persist="true"
+  class="relative top-0 pt-5 max-w-[1440px] mx-auto z-50"
+>
   <div
     class="transition-all flex justify-between items-center mx-5 sm:mx-20 gap-5 sm:gap-0"
   >
     <a href="/">
       <Logo class="fill-[#101828] dark:fill-white" />
     </a>
-    <ul class="flex space-x-1 sm:space-x-4">
+    <form action=""></form>
+    <ul
+      class="flex space-x-1 sm:space-x-4 *:has-[a>label>input:checked]:bg-black"
+    >
       <li>
         <a
           class="transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white px-4 py-2 rounded-lg dark:hover:bg-white/20"
           href="/"
+        >
+          <input type="radio" name="nav-item" />Home
+        </a>
+      </li>
+      <li>
+        <a
+          class="transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white px-4 py-2 rounded-lg dark:hover:bg-white/20"
+          href="/collections"
           ><label>
-            <input class="hidden" type="radio" name="nav-item" />Home
+            <input type="radio" name="nav-item" />Collections
           </label></a
         >
       </li>
       <li>
         <a
-          class="text-gray-600 hover:text-gray-900 dark:hover:text-white px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/20"
-          href="/collections">Collections</a
-        >
-      </li>
-      <li>
-        <a
-          class="text-gray-600 hover:text-gray-900 dark:hover:text-white px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/20"
-          href="/search">Search</a
+          class="transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white px-4 py-2 rounded-lg dark:hover:bg-white/20"
+          href="/search"
+          ><label>
+            <input type="radio" name="nav-item" />Search
+          </label></a
         >
       </li>
     </ul>
