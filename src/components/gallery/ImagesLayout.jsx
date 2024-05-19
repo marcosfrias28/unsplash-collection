@@ -15,7 +15,6 @@ export function ImagesLayout() {
         return (
           <picture
             onClick={() => setSelectedImage(actualImage)}
-            transition:name={`image ${id}`}
             key={id}
             className={`hover:shadow-md drop-shadow-xl overflow-hidden hover:shadow-zinc-900 transition-all ease-in row-span-1 rounded-xl bg-neutral-700 ${
               i === 3 || i === 5 || i === 10 ? "col-span-1 lg:col-span-2" : ""
@@ -27,6 +26,7 @@ export function ImagesLayout() {
           >
             <a href={id}>
               <img
+                transition:name={`image ${id}`}
                 id={id}
                 src={urls.regular}
                 alt={alt_description}
