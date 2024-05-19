@@ -10,13 +10,17 @@ export function SearchComponent() {
   const getImages = useMediaStore((state) => state.getImages);
   const setLoading = useMediaStore((state) => state.setLoading);
 
-  function handleSubmit(e) {
-    setKeywords(e.target[0].value);
+  function handleSubmit() {
+    setKeywords(input);
     setLoading(true);
     getImages();
   }
   return (
-    <form action={`/search`} onSubmit={(e) => handleSubmit(e)}>
+    <form
+      action={`/search`}
+      onSubmit={handleSubmit}
+      className="w-full max-w-xl mx-auto"
+    >
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium sr-only dark:text-white"
@@ -29,7 +33,7 @@ export function SearchComponent() {
           placeholder={keywords || "Enter your keywords..."}
           type="search"
           id="default-search"
-          className="w-full p-6"
+          className="w-full p-6 rounded-lg"
           required
         />
         <button className="cursor-pointer mr-4 flex items-center ps-3">

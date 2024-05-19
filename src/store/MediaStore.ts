@@ -21,9 +21,9 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
     defaultResults: defaultImages,
     selectedImage: null,
     searchResults: [],
-    setKeywords: (keywords) => set({ keywords }),
-    setSelectedImage: (selectedImage) => set({ selectedImage }),
-    setLoading: (loading) => set({ loading }),
+    setKeywords: (keywords) => set({ keywords }, false, 'Keywords changes'),
+    setSelectedImage: (selectedImage) => set({ selectedImage }, false, 'selectedImage'),
+    setLoading: (loading) => set({ loading }, false, 'Loading'),
     getImages: () => {
       console.log("getImages");
       let API_KEY = "";
