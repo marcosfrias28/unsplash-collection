@@ -32,7 +32,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
       } else {
         API_KEY = import.meta.env.PUBLIC_UNSPLASH_API_KEY;
       }
-      const { keywords } = get();
+      const { keywords, setLoading } = get();
       axios
         .get(
           `https://api.unsplash.com/search/photos?page=2&query=${keywords}&per_page=12`,
@@ -62,7 +62,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
             })
           );
           set(state => ({ ...state, searchResults: result }));
-          set(state => ({ ...state, loading: false }));
+          setLoading(false);
         })
         .catch((error) => console.log(error));
     },
