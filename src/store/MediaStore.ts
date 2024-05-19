@@ -49,7 +49,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
               id: id,
               urls: {
                 small: urls.small,
-                regular: urls.small,
+                regular: urls.regular,
               },
               alt_description: alt_description || "",
               user: {
