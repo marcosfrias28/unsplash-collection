@@ -20,26 +20,31 @@ const { id } = Astro.params;
   <section
     class="grid grid-cols-1 lg:grid-cols-2 grid-row-1 mx-auto max-w-[1280px] px-7 py-20 md:p-32 gap-10"
   >
-    <figure
-      transition:name={`image ${id}`}
+    <picture
+      transition:name=`image ${id}`
       class="w-full sm:w-[555px] h-[830px] bg-cleargray dark:bg-zinc-800 transition-color rounded-lg place-self-center"
     >
-      <SelectedImage client:visible transition:persist />
-    </figure>
+      <SelectedImage
+        id={id}
+        url={undefined}
+        alt_description={undefined}
+        client:load
+      />
+    </picture>
 
     <article class="sm:pl-10 place-self-start flex flex-col gap-5">
       <picture class="flex flex-row gap-4 items-center mb-5">
-        <PhotoProfile client:visible transition:persist />
-        <AuthorName client:visible transition:persist />
+        <PhotoProfile client:visible />
+        <AuthorName client:visible />
       </picture>
-      <PublishedDate client:visible transition:persist />
+      <PublishedDate client:visible />
       <div class="flex flex-row gap-4">
         <div
           class="rounded-md group flex flex-row gap-2 bg-cleargray text-black px-4 py-2"
         >
-          <AddToCollection client:visible transition:persist />
+          <AddToCollection client:visible />
         </div>
-        <Download client:visible transition:persist />
+        <Download client:visible />
       </div>
       <section id="Collections">
         <h3 class="text-xl">Collections</h3>
@@ -58,7 +63,7 @@ const { id } = Astro.params;
                 <small>29 Photos</small>
               </div>
             </aside>
-            <Remove client:visible transition:persist />
+            <Remove client:visible />
           </div>
         </div>
       </section>
