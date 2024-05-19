@@ -38,7 +38,7 @@ const { id } = Astro.params;
         <AuthorName client:visible />
       </picture>
       <PublishedDate client:visible />
-      <div class="flex flex-row gap-4">
+      <div class="flex flex-row gap-4 flex-wrap">
         <div
           class="rounded-md group flex flex-row gap-2 bg-cleargray text-black px-4 py-2"
         >
@@ -47,7 +47,9 @@ const { id } = Astro.params;
         <Download client:visible />
       </div>
       <section id="Collections">
-        <h3 class="text-xl">Collections</h3>
+        <h3 class="text-2xl font-semibold text-black dark:text-white my-3">
+          Collections
+        </h3>
         <div class="w-full sm:w-[555px] flex flex-col gap-4">
           <div
             class="group rounded-xl p-2 flex flex-row justify-between hover:bg-cleargray dark:hover:bg-zinc-800 transition-colors duration-300"
