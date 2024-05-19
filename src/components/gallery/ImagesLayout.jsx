@@ -28,7 +28,7 @@ export function ImagesLayout() {
           >
             <SelectedImage
               id={id}
-              url={urls.regular}
+              url={urls.small}
               alt_description={alt_description}
             />
           </picture>

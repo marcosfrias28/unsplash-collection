@@ -24,14 +24,13 @@ export function AuthorName() {
   );
 }
 
-export function PublishedDate() {
+export function PublishedDate(props) {
   const selectedImage = useMediaStore((state) => state.selectedImage);
 
   return (
     <>
-      <small className="text-sm">
-        Published on{" "}
-        {moment(selectedImage?.created_at).utc().format("YYYY-MM-DD")}
+      <small {...props} className="text-sm mb-5">
+        Published on {moment(selectedImage?.created_at).utc().format("LL")}
       </small>
     </>
   );

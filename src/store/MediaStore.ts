@@ -54,7 +54,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
               alt_description: alt_description || "",
               user: {
                 name: user.name,
-                profile_image: user.profile_image.medium,
+                profile_image: user.profile_image.large,
                 portfolio_url: user.portfolio_url,
               },
               created_at: created_at,
