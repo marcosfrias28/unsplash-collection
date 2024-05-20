@@ -1,0 +1,17 @@
+---
+import Logo from "../icons/Logo.astro";
+import { Navlist } from "./NavList";
+---
+
+<header class="relative top-0 pt-5 max-w-[1440px] mx-auto z-50">
+  <div
+    transition:persist
+    class="transition-all flex justify-between items-center mx-5 sm:mx-20 gap-5 sm:gap-0"
+  >
+    <a href="/">
+      <Logo class="fill-[#101828] dark:fill-white" />
+    </a>
+    <Navlist />
+  </div>
+</header>
+<hr class="border-1 border-gray-300 mt-5 w-full" />
