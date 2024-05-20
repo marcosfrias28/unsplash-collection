@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Layout from "@/layouts/Layout.astro";
+import CollectionList from "@/components/details/CollectionList.jsx";
 import SelectedImage from "@/components/details/SelectedImage.jsx";
 import {
   AuthorName,
@@ -34,10 +35,25 @@ const { id } = Astro.params;
   <section
     class="grid grid-cols-1 lg:grid-cols-2 grid-row-1 mx-auto max-w-[1280px] px-7 pt-10 gap-10"
   >
-
+    <div
+      transition:name={`image-${id}`}
+      id="imageModal"
+      class="hidden absolute w-full h-full sm:w-3/4 sm:h-3/4 mx-auto my-1/2 left-0 right-0 z-50 backdrop:blur-xl backdrop-brightness-50"
+    >
+      <SelectedImage
+        id={id}
+        url={undefined}
+        alt_description={undefined}
+        client:load
+      />
+      <button
+        id="closeModal"
+        class="absolute uppercase right-0 top-0 px-3 py-1 m-5 text-4xl font-black bg-black/20 rounded-xl"
+        >x</button
+      >
+    </div>
     <picture
       id=`image-${id}`
-      transition:name=`image-${id}`
       class="w-full sm:w-[555px] h-[830px] bg-cleargray dark:bg-zinc-800 transition-color rounded-lg place-self-center"
     >
       <SelectedImage
@@ -62,24 +78,9 @@ const { id } = Astro.params;
         <h3 class="text-2xl font-semibold text-black dark:text-white my-3">
           Collections
         </h3>
-        <div class="w-full sm:w-[555px] flex flex-col gap-4">
-          <div
-            class="group rounded-xl p-2 flex flex-row justify-between hover:bg-cleargray dark:hover:bg-zinc-800 transition-colors duration-300"
-          >
-            <aside class="flex flex-row gap-4">
-              <picture class="h-16 w-16 rounded-lg bg-slate-100">
-                <img src="" alt="" />
-              </picture>
-              <div>
-                <p class="font-bold text-black dark:text-white">
-                  Collection Name
-                </p>
-                <small>29 Photos</small>
-              </div>
-            </aside>
-            <Remove client:visible />
-          </div>
-        </div>
+        <section>
+          <CollectionList client:visible />
+        </section>
       </section>
     </article>
   </section>

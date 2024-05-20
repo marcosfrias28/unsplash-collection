@@ -18,6 +18,7 @@ export function SearchComponent(props) {
   return (
     <form
       {...props}
+      style={{viewTransitionName: 'search-form'}}
       action={`/search`}
       onSubmit={handleSubmit}
       className="w-full max-w-xl mx-auto"
@@ -33,6 +34,7 @@ export function SearchComponent(props) {
           name="input-keywords"
           onChange={(e) => setInput(e.target.value)}
           placeholder={"Enter your keywords..."}
+          defaultValue={keywords || ""}
           type="search"
           id="input-keywords"
           className="w-full p-6 rounded-lg border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
