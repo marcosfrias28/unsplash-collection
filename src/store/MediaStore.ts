@@ -11,6 +11,7 @@ interface mediaTypes {
   collections: any[];
   selectedImage: object | null;
   setKeywords: (keywords: string) => void;
+  addCollection: (collection: string) => void;
   getImages: () => void;
   setLoading: (loading: boolean) => void;
   setSelectedImage: (selectedImage: object) => void;
@@ -23,6 +24,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
     selectedImage: null,
     collections: [],
     searchResults: [],
+    addCollection: (collection) => set(state => ({ collections: [...state.collections, collection] }), false, 'Collection added'),
     setKeywords: (keywords) => set({ keywords }, false, 'Keywords changes'),
     setSelectedImage: (selectedImage) => set({ selectedImage }, false, 'selectedImage'),
     setLoading: (loading) => set({ loading }, false, 'Loading'),
@@ -63,8 +65,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
               link: links.download,
             })
           );
-          set(state => ({ ...state, searchResults: result }), false, 'Search results');
-          set(state => ({ collections: [...state.collections, result] }), false, 'Collection added')
+          set(state => ({ ...state, searchResults: result }));
           setLoading(false);
         })
         .catch((error) => console.log(error));

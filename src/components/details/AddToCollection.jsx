@@ -1,6 +1,11 @@
+import { useMediaStore } from "@/store/MediaStore";
+
 function AddToCollection() {
+  const searchResults = useMediaStore((state) => state.searchResults);
+  const addCollection = useMediaStore((state) => state.addCollection);
+  
   return (
-    <div className="cursor-pointer rounded-md group flex flex-row gap-2 bg-cleargray text-black px-4 py-2">
+    <div onClick={()=> addCollection(searchResults)} className="cursor-pointer rounded-md group flex flex-row gap-2 bg-cleargray text-black px-4 py-2">
       <button className="flex gap-2 items-center justify-center cursor-pointer">
         <svg
           width="16"
