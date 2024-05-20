@@ -7,20 +7,20 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="UnsplashBox - Search results" description="">
   <section class="relative">
     <div
-      class="w-full -z-20 h-24 bg-[url('/gradiend-bg@2x.png')] bg-center bg-no-repeat bg-cover"
+      class="w-full -z-20 h-24 bg-gradient-to-r from-[rgba(235,199,156,1)] via-[rgba(223,149,168,1)] to-[rgba(128,57,126,1)] bg-center bg-no-repeat bg-cover"
     >
     </div>
-    <div
-      class="absolute mx-10 w-full top-16 sm:mx-auto"
-      transition:name="search-form"
-      transition:animate="fade"
-    >
-      <SearchComponent client:load />
+    <div class="absolute mx-10 w-full top-16 sm:mx-auto">
+      <SearchComponent
+        client:load
+        transition:name="search-form"
+        transition:persist
+      />
+      <section
+        class="grid auto-rows-[140px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6"
+      >
+        <ImagesLayout client:visible />
+      </section>
     </div>
-    <section
-      class="grid auto-rows-[140px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6"
-    >
-      <ImagesLayout client:visible />
-    </section>
   </section>
 </Layout>

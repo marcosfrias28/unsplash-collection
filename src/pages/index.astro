@@ -22,13 +22,11 @@ import { SearchComponent } from "@/components/SearchComponent.jsx";
       <p class="opacity-50 text-md">
         Search high-resolution images from Unsplash
       </p>
-      <div
+      <SearchComponent
+        client:load
         transition:name="search-form"
-        transition:animate="fade"
-        class="mx-10 w-full top-16 sm:mx-auto"
-      >
-        <SearchComponent client:load />
-      </div>
+        transition:persist
+      />
     </section>
   </section>
 </Layout>
