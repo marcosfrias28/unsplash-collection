@@ -17,9 +17,9 @@ export function AuthorName() {
 
   return (
     <>
-      <h3 className="font-bold text-black dark:text-white">
+      <a href={selectedImage?.user.portfolio_url} className="font-bold text-black dark:text-white text-xl">
         {selectedImage?.user.name}
-      </h3>
+      </a>
     </>
   );
 }
