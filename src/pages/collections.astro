@@ -2,4 +2,41 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Collections - UnsplashBox" description=""> Collections </Layout>
+<Layout title="Collections - UnsplashBox" description="">
+    <section class="w-full h-full">
+        <div
+            class="text-center flex flex-col flex-nowrap gap-4 mt-14"
+            id="collections-title"
+        >
+            <h1
+                class="text-5xl font-bold text-transparent bg-[url('/gradiend-bg@2x.png')] bg-clip-text bg-auto bg-no-repeat bg-center"
+            >
+                Collections
+            </h1>
+            <p class="max-w-[380px] mx-auto">
+                Explore the world through collections of beautiful photos free
+                to use under the <a
+                    class="font-bold underline underline-offset-2"
+                    href="">Unsplash License</a
+                >.
+            </p>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    h1 {
+        animation: animate 3s linear infinite;
+    }
+    @keyframes animate {
+        0% {
+            background-position: 0% 1%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
