@@ -3,12 +3,7 @@ import { defaultImages } from "@/services/data";
 import axios from "axios";
 import { persist, devtools } from "zustand/middleware";
 
-let API_KEY = "";
-if (import.meta.env.PROD) {
-  API_KEY = import.meta.env.UNSPLASH_API_KEY;
-} else {
-  API_KEY = import.meta.env.PUBLIC_UNSPLASH_API_KEY;
-}
+let API_KEY = import.meta.env.PUBLIC_UNSPLASH_API_KEY;
 
 interface mediaTypes {
   loading: boolean;
