@@ -5,7 +5,7 @@ function SelectedImage({ id, url, alt_description }) {
   const loading = useMediaStore((state) => state.loading);
 
   return (
-    <a href={id} className={url === undefined ? "pointer-events-none" : ""}>
+    <a href={'image-'+id} className={url === undefined ? "pointer-events-none" : ""}>
       <img
         transition:name={`image ${id}`}
         id={id}

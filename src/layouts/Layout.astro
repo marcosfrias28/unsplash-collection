@@ -20,7 +20,7 @@ const { title, description }: Props = Astro.props;
   </head>
 
   <body>
-    <Header />
+    <Header transition:persist />
     <main class="h-full max-h-[1280px]">
       <slot />
     </main>
