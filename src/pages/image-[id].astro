@@ -33,12 +33,12 @@ const { id } = Astro.params;
     });
   </script>
   <section
-    class="grid grid-cols-1 lg:grid-cols-2 grid-row-1 mx-auto max-w-[1280px] px-7 pt-10 gap-10"
+    class="grid grid-cols-1 lg:grid-cols-2 grid-row-1 mx-auto max-w-[1280px] h-dvh px-7 pt-10 place-content-center"
   >
     <div
       transition:name={`image-${id}`}
       id="imageModal"
-      class="hidden absolute w-full h-full sm:w-3/4 sm:h-3/4 mx-auto my-1/2 left-0 right-0 z-50 backdrop:blur-xl backdrop-brightness-50"
+      class="absolute w-full h-full sm:w-3/4 sm:h-3/4 mx-auto my-1/2 left-0 right-0 z-50 backdrop:blur-xl backdrop-brightness-50"
     >
       <SelectedImage
         id={id}
@@ -54,6 +54,7 @@ const { id } = Astro.params;
     </div>
     <picture
       id=`image-${id}`
+      style={{ viewTransitionName: `image-${id}` }}
       class="w-full sm:w-[555px] h-[830px] bg-cleargray dark:bg-zinc-800 transition-color rounded-lg place-self-center"
     >
       <SelectedImage

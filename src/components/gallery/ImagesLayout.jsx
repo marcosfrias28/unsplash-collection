@@ -17,6 +17,7 @@ export function ImagesLayout() {
           <picture
             onClick={() => setSelectedImage(actualImage)}
             key={id}
+            style={{viewTransitionName: `image-${id}`}}
             className={`hover:shadow-md drop-shadow-xl overflow-hidden hover:shadow-zinc-900 transition-all ease-in row-span-1 rounded-xl bg-neutral-700 ${
               i === 3 || i === 5 || i === 10 ? "col-span-1 lg:col-span-2" : ""
             } ${
