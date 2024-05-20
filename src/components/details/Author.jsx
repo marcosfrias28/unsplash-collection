@@ -17,7 +17,7 @@ export function AuthorName() {
 
   return (
     <>
-      <a href={selectedImage?.user.portfolio_url} className="font-bold text-black dark:text-white text-lg hover:underline">
+      <a href={selectedImage?.user.portfolio_url} target="_blank" className="font-bold text-black dark:text-white text-lg hover:underline">
         {selectedImage?.user.name}
       </a>
     </>

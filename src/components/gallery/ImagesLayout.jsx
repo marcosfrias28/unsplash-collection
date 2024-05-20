@@ -26,11 +26,13 @@ export function ImagesLayout() {
                 : "row-span-2"
             }`}
           >
+         <a href={'image-'+id}>
             <SelectedImage
               id={id}
               url={urls.small}
               alt_description={alt_description}
             />
+          </a>
           </picture>
         );
       })}
