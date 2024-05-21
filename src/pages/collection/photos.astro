@@ -1,0 +1,20 @@
+---
+import { ImagesLayout } from "@/components/gallery/ImagesLayout";
+import { SearchComponent } from "../../components/SearchComponent";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="UnsplashBox - Collection relative Photos" description="">
+  <section class="relative">
+    <h1
+      class="w-full -z-20 h-24 bg-clip-text bg-gradient-to-r from-[rgba(235,199,156,1)] via-[rgba(223,149,168,1)] to-[rgba(128,57,126,1)] bg-center bg-no-repeat bg-cover"
+    >
+      Collection Title
+    </h1>
+    <section
+      class="grid auto-rows-[140px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6"
+    >
+      <ImagesLayout client:visible />
+    </section>
+  </section>
+</Layout>

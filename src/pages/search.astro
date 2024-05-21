@@ -1,7 +1,7 @@
 ---
 import { ImagesLayout } from "@/components/gallery/ImagesLayout";
-import { SearchComponent } from "../components/SearchComponent";
-import Layout from "../layouts/Layout.astro";
+import { SearchComponent } from "@/components/SearchComponent";
+import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="UnsplashBox - Search results" description="">
@@ -12,11 +12,11 @@ import Layout from "../layouts/Layout.astro";
     </div>
     <div class="absolute mx-10 w-full top-16 sm:mx-auto">
       <SearchComponent client:visible />
-      <section
-        class="grid auto-rows-[140px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6"
-      >
-        <ImagesLayout client:visible />
-      </section>
     </div>
+    <section
+      class="grid auto-rows-[140px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6"
+    >
+      <ImagesLayout client:visible />
+    </section>
   </section>
 </Layout>
