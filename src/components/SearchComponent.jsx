@@ -10,7 +10,10 @@ export function SearchComponent(props) {
   const getImages = useMediaStore((state) => state.getImages);
   const setLoading = useMediaStore((state) => state.setLoading);
 
-  function handleSubmit() {
+  function handleSubmit(event) {
+    if (location.href === "/search") {
+      event.preventDefault();
+    }
     setKeywords(input);
     setLoading(true);
     getImages();
@@ -18,8 +21,8 @@ export function SearchComponent(props) {
   return (
     <form
       {...props}
+      action="/search"
       style={{viewTransitionName: 'search-form'}}
-      action={`/search`}
       onSubmit={handleSubmit}
       className="w-full max-w-xl mx-auto"
     >

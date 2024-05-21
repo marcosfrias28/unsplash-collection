@@ -36,7 +36,7 @@ const { id } = Astro.params;
     class="grid grid-cols-1 lg:grid-cols-2 grid-row-1 mx-auto max-w-[1280px] h-dvh px-7 pt-10 place-content-center"
   >
     <div
-      transition:name={`image-${id}`}
+      transition:name={`image-${id} modal`}
       id="imageModal"
       class="hidden absolute mx-auto my-1/2 left-0 right-0 z-50 backdrop:blur-xl backdrop-brightness-50"
     >
@@ -58,6 +58,7 @@ const { id } = Astro.params;
     <picture
       id=`image-${id}`
       transition:name=`image-${id}`
+      transition:name=`image-${id} modal`
       class="w-full sm:w-[555px] h-[830px] bg-cleargray dark:bg-zinc-800 transition-color rounded-lg place-self-center"
     >
       <SelectedImage

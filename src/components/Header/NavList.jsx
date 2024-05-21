@@ -1,35 +1,43 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-export function Navlist() {
-    const [checked, setChecked] = useState(false)
+
+const navlistOptions = [
+    { name: 'Home', href: '/'},
+    { name: 'Collections', href: '/collections' },
+    { name: 'Search', href: '/search' },
+]
+
+function NavItem({ id, item, isChecked, onChange }) {
     return (
-            <ul
-      className="flex space-x-1 sm:space-x-4"
-    >
-      <li>
+    <li id={id} onClick={onChange} >
         <a
-          className=" has-[input:checked]:bg-gray-600 transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white px-4 py-2 rounded-lg dark:hover:bg-white/20"
-          href="/"
-        >
-          <input onChange={(e)=> e.currentTarget.checked} type="radio" name="nav-item" />Home</a>
-      </li>
-      <li>
-        <a
-          className="transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white px-4 py-2 rounded-lg dark:hover:bg-white/20"
-          href="/collections"
+          className="transition-colors has-[input:checked]:bg-cleargray has-[input:checked]:text-gray-900 text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white px-4 py-2 rounded-lg dark:hover:bg-white/20"
+          href={item.href}
           ><label>
-            <input type="radio" name="nav-item" />Collections
+            <input className={`${isChecked ? 'checked' : ''}`} type="radio" name="nav-item" />{item.name}
           </label></a>
       </li>
-      <li>
-        <a
-          data-astro-prefetch="viewport"
-          className="transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white px-4 py-2 rounded-lg dark:hover:bg-white/20"
-          href="/search"
-          ><label>
-            <input type="radio" name="nav-item" />Search
-          </label></a>
-      </li>
-    </ul>
     )
 }
+
+export const Navlist = () => {
+    const [checkedID, setCheckedID] = useState('item1');
+  ///
+    const handleChecked = (e) => {
+      setCheckedID(e.currentTarget.id);
+    };
+  ///
+    return (
+      <ul className="flex space-x-1 sm:space-x-4">
+        {navlistOptions.map((item, i) => (
+          <NavItem
+            key={i}
+            id={`item${i}`}
+            item={item}
+            isChecked={`item${i}` === checkedID}
+            onChange={handleChecked}
+          />
+        ))}
+      </ul>
+    );
+  };
