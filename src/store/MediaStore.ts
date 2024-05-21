@@ -13,7 +13,7 @@ interface mediaTypes {
   collections: any[];
   selectedImage: object | null;
   setKeywords: (keywords: string) => void;
-  getImageCollections: () => void;
+  getImageCollections: (page: number) => void;
   getImages: () => void;
   setLoading: (loading: boolean) => void;
   setSelectedImage: (selectedImage: object) => void;
@@ -26,12 +26,13 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
     selectedImage: null,
     collections: [],
     searchResults: [],
-    getImageCollections: () => {
+    getImageCollections: (page) => {
       console.log("get Collections");
       const { keywords, setLoading } = get();
+      setLoading(true);
       axios
         .get(
-          `https://api.unsplash.com/search/photos?page=2&query=${keywords}&per_page=12`,
+          `https://api.unsplash.com/search/photos?page=${page}&per_page=9`,
           {
             method: "GET",
             headers: {
@@ -58,9 +59,8 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
             })
           );
           set(state => ({ ...state, searchResults: result }));
-          setLoading(false);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error)).finally(() => setLoading(false));
     },
     setKeywords: (keywords) => set({ keywords }, false, 'Keywords changes'),
     setSelectedImage: (selectedImage) => set({ selectedImage }, false, 'selectedImage'),
