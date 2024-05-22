@@ -7,26 +7,22 @@ function CollectionLayout() {
     const getImageCollections = useMediaStore(state => state.getImageCollections);
     const getImages = useMediaStore(state => state.getImages);
     useEffect(() => {
-      console.log(currentPage, collections);
       getImageCollections(currentPage);
-      console.log(collections);
     }, [currentPage])
 
-    function handleClick(photosAPI: string) {
+    function handleClick(photosAPI: string, title: string) {
       getImages(photosAPI);
-      location.href = "/search";
+      location.href = `/collection/${title}`;
     }
     return (
       <section>
         <div className="flex flex-wrap gap-5 max-w-[1280px] w-full h-full">
-          {
-          collections.map((collection) => {
+          {collections && collections?.map((collection) => {
             const {id, cover, description, photosAPI, title, published_at, total_photos, user  } = collection;
             return (
-              <div onClick={()=> handleClick(photosAPI)} id={id}>
+              <div onClick={()=> handleClick(photosAPI, title)} id={id}>
                 <img src={cover} alt={description} />
               </div>
-            
             )
           })
           }

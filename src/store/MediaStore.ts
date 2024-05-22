@@ -25,7 +25,7 @@ interface mediaTypes {
   keywords: string;
   defaultResults: any[];
   searchResults: any[];
-  collections: collections[];
+  collections: null | collections[];
   selectedImage: object | null;
   setKeywords: (keywords: string) => void;
   getImageCollections: (page: number) => void;
@@ -41,7 +41,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
     keywords: "",
     defaultResults: defaultImages,
     selectedImage: null,
-    collections: [],
+    collections: null,
     searchResults: [],
     getImageCollections: (page) => {
       console.log("get Collections");
@@ -58,7 +58,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
           }
         )
         .then(({ data }) => {
-          const result = data.results.map(
+          const result = data.map(
             ({ id, title, description, total_photos, published_at, user, cover_photo, links }) => ({
               id,
               title,
