@@ -5,7 +5,7 @@ import { persist, devtools } from "zustand/middleware";
 
 let API_KEY = import.meta.env.PUBLIC_UNSPLASH_API_KEY;
 
-interface collections {
+interface collection {
   id:string;
   title:string;
   description:string;
@@ -25,59 +25,68 @@ interface mediaTypes {
   keywords: string;
   defaultResults: any[];
   searchResults: any[];
-  collections: null | collections[];
   selectedImage: object | null;
   setKeywords: (keywords: string) => void;
-  getImageCollections: (page: number) => void;
   getImages: (photosAPI: string) => void;
   setLoading: (loading: boolean) => void;
   setSelectedImage: (selectedImage: object) => void;
 }
+interface collectionTypes {
+  collections: object[];
+  getImageCollections: (page: number) => void;
+  setLoading: (loading: boolean) => void;
+  loading: boolean;
+}
 
-
+export const useCollectionStore = create<collectionTypes>()(devtools((set, get) => ({
+  loading: true,
+  collections: [],
+  setLoading: (loading) => set({ loading }, false, 'Loading'),
+  getImageCollections: (page) => {
+    console.log("get Collections");
+    const { setLoading, collections } = get();
+    setLoading(true);
+    axios
+      .get(
+        `https://api.unsplash.com/collections?page=${page}&per_page=12`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Client-ID ${API_KEY}`,
+          },
+        }
+      )
+      .then(({ data }) => {
+        const result = data.map(
+          ({ id, title, description, total_photos, published_at, user, cover_photo, links }) => ({
+            id,
+            title,
+            description,
+            cover: cover_photo.urls.regular,
+            user: {
+              name: user.name,
+              profile_image: user.profile_image.large,
+              portfolio_url: user.portfolio_url,
+            },
+            total_photos,
+            published_at,
+            photosAPI: links.photos,
+          })
+        );
+      set(state => {
+        return {...state, collections: [...collections, ...result]}
+      });
+      })
+      .catch((error) => console.log(error)).finally(() => setLoading(false));
+  }
+})) )
 
 export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) => ({
     loading: true,
     keywords: "",
     defaultResults: defaultImages,
     selectedImage: null,
-    collections: null,
     searchResults: [],
-    getImageCollections: (page) => {
-      console.log("get Collections");
-      const { setLoading } = get();
-      setLoading(true);
-      axios
-        .get(
-          `https://api.unsplash.com/collections?page=${page}&per_page=12`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Client-ID ${API_KEY}`,
-            },
-          }
-        )
-        .then(({ data }) => {
-          const result = data.map(
-            ({ id, title, description, total_photos, published_at, user, cover_photo, links }) => ({
-              id,
-              title,
-              description,
-              cover: cover_photo.urls.regular,
-              user: {
-                name: user.name,
-                profile_image: user.profile_image.large,
-                portfolio_url: user.portfolio_url,
-              },
-              total_photos,
-              published_at,
-              photosAPI: links.photos,
-            })
-          );
-          set(state => ({ ...state, collections: [...state.collections, result] }));
-        })
-        .catch((error) => console.log(error)).finally(() => setLoading(false));
-    },
     setKeywords: (keywords) => set({ keywords }, false, 'Keywords changes'),
     setSelectedImage: (selectedImage) => set({ selectedImage }, false, 'selectedImage'),
     setLoading: (loading) => set({ loading }, false, 'Loading'),
@@ -113,8 +122,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
             })
           );
           set(state => ({ ...state, searchResults: result }));
-          setLoading(false);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => new Error("Error fetching images", error.status)).finally(() => setLoading(false));
     },
   }), {name: "mediaStore"})));
