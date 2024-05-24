@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { defaultImages } from "@/services/data";
+import { defaultCollections, defaultImages } from "@/services/data";
 import axios from "axios";
 import { persist, devtools } from "zustand/middleware";
 
@@ -32,7 +32,7 @@ interface mediaTypes {
   setSelectedImage: (selectedImage: object) => void;
 }
 interface collectionTypes {
-  collections: object[];
+  collections: collection[];
   getImageCollections: (page: number) => void;
   setLoading: (loading: boolean) => void;
   loading: boolean;
@@ -57,7 +57,7 @@ export const useCollectionStore = create<collectionTypes>()(devtools((set, get) 
         }
       )
       .then(({ data }) => {
-        const result = data.map(
+        const response = data.map(
           ({ id, title, description, total_photos, published_at, user, cover_photo, links }) => ({
             id,
             title,
@@ -73,9 +73,8 @@ export const useCollectionStore = create<collectionTypes>()(devtools((set, get) 
             photosAPI: links.photos,
           })
         );
-      set(state => {
-        return {...state, collections: [...collections, ...result]}
-      });
+       const result = response.filter((obj:collection) => collections.filter(collection => collection.id !== obj.id))
+      set((state) => ({...state, collections: [...collections, ...result]}));
       })
       .catch((error) => console.log(error)).finally(() => setLoading(false));
   }

@@ -24,15 +24,15 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.1",
-    "standard": "^17.1.0",
     "tailwindcss": "^3.4.3",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
     "js-standard": "^1.0.1",
+    "standard": "^17.1.0",
     "ts-standard": "^12.0.2"
   },
-  "include": [
-    "./node_modules/standard/eslintrc.json"
-  ]
+  "eslintConfig": {
+    "extends": "standard"
+  }
 }
