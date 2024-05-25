@@ -3,12 +3,11 @@ import SelectedImage from "../details/SelectedImage";
 
 export function CollectionPhotosLayout() {
   const defaultResults = useMediaStore((state) => state.defaultResults);
-  const searchResults = useMediaStore((state) => state.searchResults);
-  const result = useCollectionStore((state) => state.searchResults);
+  const collectionPhotos = useMediaStore((state) => state.collectionPhotos);
 
   const setSelectedImage = useMediaStore((state) => state.setSelectedImage);
 
-  const gallery = searchResults.length >= 1 ? searchResults : defaultResults;
+  const gallery = collectionPhotos.length >= 1 ? collectionPhotos : defaultResults;
 
   return (
     <>

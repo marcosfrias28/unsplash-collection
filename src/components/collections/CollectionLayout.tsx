@@ -1,35 +1,71 @@
-import { useCollectionStore, useMediaStore } from "@/store/MediaStore";
+import { API_KEY, useMediaStore } from "@/store/MediaStore";
 import type { collection } from "@/types/types";
-import moment from "moment";
-import { useEffect, useLayoutEffect, useState } from "react";
+import axios from "axios";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+
+
+function getRandomPage() {
+  return Math.floor(Math.random() * 50) + 1;
+}
 
 
 function CollectionLayout() {
-  const [currentPage, setCurrentPage] = useState<number>(1)
-  const getImageCollections = useCollectionStore(state => state.getImageCollections);
+  const [initialRender, setInitialRender] = useState(true)
+  const [loading, setLoading] = useState(false)
+  const [currentPage, setCurrentPage] = useState<number>(getRandomPage())
   const getImages = useMediaStore(state => state.getImages);
-  const result = useCollectionStore(state => state.result);
-  const [collections, setCollections] = useState<collection[]>(result);
+  const [collections, setCollections] = useState<collection[]>([]);
+
+  const getCollections = useCallback(() => {
+    setLoading(true);
+    axios.get(
+      `https://api.unsplash.com/collections?page=${currentPage}&per_page=12`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Client-ID ${API_KEY}`,
+        },
+      }
+    ).then(({ data }) => {
+      const result = data.map(
+        ({ id, title, description, total_photos, published_at, user, cover_photo, links }) => ({
+          id,
+          title,
+          description,
+          cover: cover_photo.urls.regular,
+          user: {
+            name: user.name,
+            profile_image: user.profile_image.large,
+            portfolio_url: user.portfolio_url,
+          },
+          total_photos,
+          published_at,
+          photosAPI: links.photos,
+        })
+      );
+      setCollections(currentCollections => [...currentCollections, ...result]);
+    }).catch((error) => console.log(error)).finally(() => setLoading(false));
+  }, [currentPage])
 
   useEffect(() => {
-    getImageCollections(currentPage)
-    setCollections(result)
-  }, [])
+    getCollections();
+    console.log(collections);
+  }, [currentPage])
 
   function handleClick(photosAPI: string, title: string, total_photos: number) {
     getImages(photosAPI);
     location.href = `/collection/${title}?total_photos=${total_photos}`;
   }
   function handleScroll() {
-    setCurrentPage(currentPage + 1)
-    getImageCollections(currentPage)
-    setCollections([...collections, ...result])
+    setCurrentPage(current => current + 1)
+    getCollections()
   }
+
   return (
     <section className="flex flex-col justify-center items-center ">
       <div className="flex flex-wrap gap-8 max-w-[1280px] w-full h-full my-10">
         {collections.length > 0 && collections.map((collection) => {
-          const { id, cover, description, photosAPI, title, published_at, total_photos } = collection;
+          const { id, cover, description, photosAPI, title, total_photos } = collection;
           return (
             <article key={id} className="mb-4">
               <div className="group w-96 h-96 relative" onClick={() => handleClick(photosAPI, title, total_photos)} id={id}>
@@ -43,6 +79,9 @@ function CollectionLayout() {
           )
         })
         }
+      </div>
+      <div className="flex justify-center items-center">
+        {loading && <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>}
       </div>
       <button onClick={handleScroll} className='rounded-3xl px-2 py-3 hover:scale-105 transition-all bg-gradient-to-r from-[rgba(235,199,156,1)] via-[rgba(223,149,168,1)] to-[rgba(128,57,126,1)]' ><span className="bg-white text-black px-5 py-2 rounded-3xl font-bold">Load more results</span></button>
     </section >

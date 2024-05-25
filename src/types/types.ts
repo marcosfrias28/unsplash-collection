@@ -20,9 +20,10 @@ export interface collection {
     keywords: string;
     defaultResults: any[];
     searchResults: any[];
+    collectionPhotos: any[];
     selectedImage: object | null;
     setKeywords: (keywords: string) => void;
-    getImages: (photosAPI: string) => void;
+    getImages: (photosAPI?: string) => void;
     setLoading: (loading: boolean) => void;
     setSelectedImage: (selectedImage: object) => void;
   }
@@ -31,5 +32,4 @@ export interface collection {
     setLoading: (loading: boolean) => void;
     loading: boolean;
     firstRender: boolean;
-    result: collection[];
   }
