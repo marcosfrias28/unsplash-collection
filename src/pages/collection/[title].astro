@@ -1,22 +1,27 @@
 ---
-import { ImagesLayout } from "@/components/search/ImagesLayout";
+import { CollectionPhotosLayout } from "@/components/collections/CollectionPhotosLayout";
 import { SearchComponent } from "../../components/SearchComponent";
 import Layout from "../../layouts/Layout.astro";
 
-const title = Astro.params;
+const { title } = Astro.params;
+const total_photos = Astro.url.href.match("total_photos=(\\d+)")[1];
+console.log(title, total_photos);
 ---
 
 <Layout title="UnsplashBox - Collection relative Photos" description="">
-  <section class="relative">
+  <section class="text-center my-10">
     <h1
-      class="w-full -z-20 h-24 bg-clip-text bg-gradient-to-r from-[rgba(235,199,156,1)] via-[rgba(223,149,168,1)] to-[rgba(128,57,126,1)] bg-center bg-no-repeat bg-cover"
+      class="w-full text-8xl h-24 bg-clip-text bg-gradient-to-r from-[rgba(235,199,156,1)] via-[rgba(223,149,168,1)] to-[rgba(128,57,126,1)] bg-center bg-no-repeat bg-cover"
     >
       {title}
     </h1>
+    <p class="text-xl">
+      {total_photos} Photos
+    </p>
     <section
       class="grid auto-rows-[140px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6"
     >
-      <ImagesLayout client:visible />
+      <CollectionPhotosLayout client:visible />
     </section>
   </section>
 </Layout>

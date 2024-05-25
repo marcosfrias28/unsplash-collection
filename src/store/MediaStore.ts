@@ -2,49 +2,17 @@ import { create } from "zustand";
 import { defaultCollections, defaultImages } from "@/services/data";
 import axios from "axios";
 import { persist, devtools } from "zustand/middleware";
+import type { collectionTypes, mediaTypes } from "@/types/types";
 
 let API_KEY = import.meta.env.PUBLIC_UNSPLASH_API_KEY;
 
-interface collection {
-  id:string;
-  title:string;
-  description:string;
-  cover:string;
-  user: {
-    name:string;
-    profile_image:string;
-    portfolio_url:string;
-  },
-  total_photos:number;
-  published_at: string;
-  photosAPI: string;
-}
-
-interface mediaTypes {
-  loading: boolean;
-  keywords: string;
-  defaultResults: any[];
-  searchResults: any[];
-  selectedImage: object | null;
-  setKeywords: (keywords: string) => void;
-  getImages: (photosAPI: string) => void;
-  setLoading: (loading: boolean) => void;
-  setSelectedImage: (selectedImage: object) => void;
-}
-interface collectionTypes {
-  collections: collection[];
-  getImageCollections: (page: number) => void;
-  setLoading: (loading: boolean) => void;
-  loading: boolean;
-}
-
 export const useCollectionStore = create<collectionTypes>()(devtools((set, get) => ({
   loading: true,
-  collections: [],
+  firstRender: true,
+  result: [],
   setLoading: (loading) => set({ loading }, false, 'Loading'),
   getImageCollections: (page) => {
-    console.log("get Collections");
-    const { setLoading, collections } = get();
+    const { setLoading } = get();
     setLoading(true);
     axios
       .get(
@@ -73,8 +41,7 @@ export const useCollectionStore = create<collectionTypes>()(devtools((set, get) 
             photosAPI: links.photos,
           })
         );
-       const result = response.filter((obj:collection) => collections.filter(collection => collection.id !== obj.id))
-      set((state) => ({...state, collections: [...collections, ...result]}));
+        set(state => ({...state, result: response}))
       })
       .catch((error) => console.log(error)).finally(() => setLoading(false));
   }
@@ -90,7 +57,11 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
     setSelectedImage: (selectedImage) => set({ selectedImage }, false, 'selectedImage'),
     setLoading: (loading) => set({ loading }, false, 'Loading'),
     getImages: (photosAPI) => {
-      console.log("get Images");
+      if (!photosAPI) {
+        console.log("get searched Images");
+      } else {
+        console.log("get Collections Images");
+      }
       const { keywords, setLoading } = get();
       const url = photosAPI ? photosAPI : `https://api.unsplash.com/search/photos?page=1&query=${keywords}&per_page=12`;
       axios

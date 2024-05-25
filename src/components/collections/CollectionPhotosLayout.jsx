@@ -1,9 +1,10 @@
 import { useCollectionStore, useMediaStore } from "@/store/MediaStore";
 import SelectedImage from "../details/SelectedImage";
 
-export function ImagesLayout({layout}) {
+export function CollectionPhotosLayout() {
   const defaultResults = useMediaStore((state) => state.defaultResults);
   const searchResults = useMediaStore((state) => state.searchResults);
+  const result = useCollectionStore((state) => state.searchResults);
 
   const setSelectedImage = useMediaStore((state) => state.setSelectedImage);
 
