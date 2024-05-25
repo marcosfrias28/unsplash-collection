@@ -23,7 +23,8 @@ export interface collection {
     collectionPhotos: any[];
     selectedImage: object | null;
     setKeywords: (keywords: string) => void;
-    getImages: (photosAPI?: string) => void;
+    getImages: () => void;
+    getCollectionImages: (photosAPI: string) => void;
     setLoading: (loading: boolean) => void;
     setSelectedImage: (selectedImage: object) => void;
   }

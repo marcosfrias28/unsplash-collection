@@ -1,4 +1,4 @@
-import { useCollectionStore, useMediaStore } from "@/store/MediaStore";
+import { useMediaStore } from "@/store/MediaStore";
 import SelectedImage from "../details/SelectedImage";
 
 export function ImagesLayout({layout}) {

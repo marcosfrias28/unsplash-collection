@@ -4,24 +4,44 @@ import { SearchComponent } from "../../components/SearchComponent";
 import Layout from "../../layouts/Layout.astro";
 
 const { title } = Astro.params;
-const total_photos = Astro.url.href.match("total_photos=(\\d+)")[1];
+const total_photos = Astro.url.href.split("=")[1];
 console.log(title, total_photos);
 ---
 
 <Layout title="UnsplashBox - Collection relative Photos" description="">
   <section class="text-center my-10">
-    <h1
-      class="w-full text-8xl h-24 bg-clip-text bg-gradient-to-r from-[rgba(235,199,156,1)] via-[rgba(223,149,168,1)] to-[rgba(128,57,126,1)] bg-center bg-no-repeat bg-cover"
-    >
-      {title}
-    </h1>
-    <p class="text-xl">
-      {total_photos} Photos
-    </p>
+    <div class="flex flex-col flex-nowrap gap-1">
+      <h1
+        class="min-h-36 text-transparent w-full text-6xl sm:text-7xl md:text-8xl lg:text-9xl bg-[url('/gradiend-bg@2x.png')] bg-clip-text bg-cover bg-no-repeat bg-center"
+      >
+        {title}
+      </h1>
+      <p class="text-sm sm:text-sm md:text-lg lg:text-xl">
+        {total_photos} Photos
+      </p>
+    </div>
+
     <section
       class="grid auto-rows-[140px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6"
     >
-      <CollectionPhotosLayout client:visible />
+      <CollectionPhotosLayout client:load />
     </section>
   </section>
 </Layout>
+
+<style is:inline>
+  h1 {
+    animation: animate 3s linear infinite;
+  }
+  @keyframes animate {
+    0% {
+      background-position: 0% 1%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>

@@ -8,14 +8,12 @@ export function SearchComponent(props) {
   const keywords = useMediaStore((state) => state.keywords);
   const setKeywords = useMediaStore((state) => state.setKeywords);
   const getImages = useMediaStore((state) => state.getImages);
-  const setLoading = useMediaStore((state) => state.setLoading);
 
   function handleSubmit(event) {
     if (location.href === "/search") {
       event.preventDefault();
     }
     setKeywords(input);
-    setLoading(true);
     getImages();
   }
   return (

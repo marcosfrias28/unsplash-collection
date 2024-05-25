@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 
-
 const navlistOptions = [
     { name: 'Home', href: '/'},
     { name: 'Collections', href: '/collections' },
