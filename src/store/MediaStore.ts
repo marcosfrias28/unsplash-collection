@@ -14,6 +14,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
   searchResults: [],
   collectionPhotos: [],
   setKeywords: (keywords) => set({ keywords }, false, 'Keywords changes'),
+  setCollectionPhotos: (collectionPhotos) => set({ collectionPhotos }, false, 'Photo Collections changes'),
   setSelectedImage: (selectedImage) => set({ selectedImage }, false, 'selectedImage'),
   setLoading: (loading) => set({ loading }, false, 'Loading'),
   getImages: () => {
@@ -51,16 +52,5 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
         set(state => ({ ...state, searchResults: result }));
       })
       .catch((error) => new Error("Error fetching images", error.status)).finally(() => setLoading(false));
-  },
-  getCollectionImages: photosAPI => {
-    axios.get(photosAPI,
-      {
-        headers: {
-          Authorization: `Client-ID ${API_KEY}`,
-        },
-      }).then(data => {
-        console.log(data);
-        set(state => ({ ...state, collectionPhotos: data.data }));
-      }).catch((error) => new Error("Error fetching images", error.status));
-  },
+  }
 }), { name: "mediaStore" })));

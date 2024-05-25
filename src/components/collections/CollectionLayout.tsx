@@ -3,18 +3,26 @@ import type { collection } from "@/types/types";
 import axios from "axios";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 
-
 function getRandomPage() {
   return Math.floor(Math.random() * 50) + 1;
 }
 
-
 function CollectionLayout() {
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState<number>(getRandomPage())
-  const getCollectionImages = useMediaStore(state => state.getCollectionImages);
   const [collections, setCollections] = useState<collection[]>([]);
+  const collectionPhotos = useMediaStore(state => state.collectionPhotos)
+  const set = useMediaStore(state => state.setCollectionPhotos)
+  const getCollectionImages = useCallback((photosAPI: string) => {
+    axios.get(photosAPI,
+      {
+        headers: {
+          Authorization: `Client-ID ${API_KEY}`,
+        },
+      }).then(data => {
 
+      }).catch((error) => new Error("Error fetching images", error.status));
+  }, [])
   const getCollections = useCallback(() => {
     setLoading(true);
     axios.get(
