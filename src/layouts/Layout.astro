@@ -25,7 +25,7 @@ const { title, description }: Props = Astro.props;
       <slot />
     </main>
     <footer></footer>
-    <style>
+    <style is:global>
       body {
         font-family: system-ui, sans-serif;
         line-height: 1.5;
@@ -38,6 +38,20 @@ const { title, description }: Props = Astro.props;
         body {
           background-color: #121826;
           color: white;
+        }
+      }
+      .animated-bg {
+        animation: animate 3s linear infinite;
+      }
+      @keyframes animate {
+        0% {
+          background-position: 0% 1%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
         }
       }
     </style>

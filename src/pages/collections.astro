@@ -10,7 +10,7 @@ import Layout from "../layouts/Layout.astro";
             id="collections-title"
         >
             <h1
-                class="text-5xl font-bold text-transparent bg-[url('/gradiend-bg@2x.png')] bg-clip-text bg-auto bg-no-repeat bg-center"
+                class="animated-bg text-5xl font-bold text-transparent bg-[url('/gradiend-bg@2x.png')] bg-clip-text bg-auto bg-no-repeat bg-center"
             >
                 Collections
             </h1>
@@ -25,20 +25,3 @@ import Layout from "../layouts/Layout.astro";
         <CollectionLayout client:load />
     </section>
 </Layout>
-
-<style>
-    h1 {
-        animation: animate 3s linear infinite;
-    }
-    @keyframes animate {
-        0% {
-            background-position: 0% 1%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
-    }
-</style>
