@@ -3,6 +3,7 @@ import { defaultImages } from "@/services/data";
 import axios from "axios";
 import { persist, devtools } from "zustand/middleware";
 import type { mediaTypes } from "@/types/types";
+import { api } from "@/utils/unsplash";
 
 export let API_KEY = import.meta.env.PUBLIC_UNSPLASH_API_KEY;
 
@@ -21,18 +22,9 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
     console.log("get searched Images");
     const { keywords, setLoading } = get();
     setLoading(true);
-    const url = `https://api.unsplash.com/search/photos?page=1&query=${keywords}&per_page=12`;
-    axios
-      .get(url,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Client-ID ${API_KEY}`,
-          },
-        }
-      )
-      .then(({ data }) => {
-        const result = data.results.map(
+    api.search.getPhotos({ query: keywords, page: 1, perPage: 12 }).then(({ response }) => {
+      {
+        const result = response.results.map(
           ({ id, urls, links, alt_description, user, created_at }) => ({
             id: id,
             urls: {
@@ -50,7 +42,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
           })
         );
         set(state => ({ ...state, searchResults: result }));
-      })
-      .catch((error) => new Error("Error fetching images", error.status)).finally(() => setLoading(false));
+      }
+    }).finally(() => setLoading(false));
   }
 }), { name: "mediaStore" })));

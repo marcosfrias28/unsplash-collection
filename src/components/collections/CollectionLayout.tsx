@@ -1,5 +1,6 @@
 import { API_KEY, useMediaStore } from "@/store/MediaStore";
 import type { collection } from "@/types/types";
+import { api } from "@/utils/unsplash";
 import axios from "axios";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 
@@ -12,29 +13,17 @@ function CollectionLayout() {
   const [currentPage, setCurrentPage] = useState<number>(getRandomPage())
   const [collections, setCollections] = useState<collection[]>([]);
   const collectionPhotos = useMediaStore(state => state.collectionPhotos)
-  const set = useMediaStore(state => state.setCollectionPhotos)
-  const getCollectionImages = useCallback((photosAPI: string) => {
-    axios.get(photosAPI,
-      {
-        headers: {
-          Authorization: `Client-ID ${API_KEY}`,
-        },
-      }).then(data => {
+  const setCollectionPhotos = useMediaStore(state => state.setCollectionPhotos)
 
-      }).catch((error) => new Error("Error fetching images", error.status));
+  const getCollectionImages = useCallback((id: any) => {
+    console.log(id);
+    api.collections.getPhotos({ collectionId: id }).then(({ response }) => console.log(response.results))
   }, [])
+
   const getCollections = useCallback(() => {
     setLoading(true);
-    axios.get(
-      `https://api.unsplash.com/collections?page=${currentPage}&per_page=12`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Client-ID ${API_KEY}`,
-        },
-      }
-    ).then(({ data }) => {
-      const result = data.map(
+    api.collections.list({ page: currentPage, perPage: 12 }).then(({ response }) => {
+      const result = response.results.map(
         ({ id, title, description, total_photos, published_at, user, cover_photo, links }) => ({
           id,
           title,
@@ -51,15 +40,15 @@ function CollectionLayout() {
         })
       );
       setCollections(currentCollections => [...currentCollections, ...result]);
-    }).catch((error) => console.log(error)).finally(() => setLoading(false));
+    }).finally(() => setLoading(false))
   }, [currentPage])
 
   useEffect(() => {
     getCollections();
   }, [currentPage])
 
-  function handleClick(photosAPI: string, title: string, total_photos: number) {
-    getCollectionImages(photosAPI);
+  function handleClick(id: any, title: string, total_photos: number) {
+    getCollectionImages(id);
     location.href = `/collection/${title}?total_photos=${total_photos}`;
   }
   function handleScroll() {
@@ -70,10 +59,10 @@ function CollectionLayout() {
     <>
       <div className="flex flex-wrap gap-8 max-w-[1280px] w-full h-full my-10 justify-center items-center">
         {collections && collections.map((collection) => {
-          const { id, cover, description, photosAPI, title, total_photos } = collection;
+          const { id, cover, description, title, total_photos } = collection;
           return (
             <article key={id} className="mb-4">
-              <div className="group w-96 h-96 relative" onClick={() => handleClick(photosAPI, title, total_photos)} id={id}>
+              <div className="group w-96 h-96 relative" onClick={() => handleClick(id, title, total_photos)} id={id}>
                 <img className="rounded-md object-cover object-center h-full w-full" src={cover} alt={description || title || "No description "} />
               </div>
               <div className="flex flex-col gap-1 mt-3 overflow-clip w-96">
