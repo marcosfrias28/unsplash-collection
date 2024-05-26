@@ -10,13 +10,16 @@ import Layout from "@/layouts/Layout.astro";
       class="w-full -z-20 h-24 bg-gradient-to-r from-[rgba(235,199,156,1)] via-[rgba(223,149,168,1)] to-[rgba(128,57,126,1)] bg-center bg-no-repeat bg-cover"
     >
     </div>
-    <div class="absolute mx-10 w-full top-16 sm:mx-auto">
+    <div
+      transition:name="search-form"
+      class="absolute mx-10 w-full top-16 sm:mx-auto"
+    >
       <SearchComponent client:load />
     </div>
     <section
       class="grid auto-rows-[140px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1440px] mx-auto py-24 px-6"
     >
-      <ImagesLayout layout="search" client:visible />
+      <ImagesLayout layout="search" client:load />
     </section>
   </section>
 </Layout>
