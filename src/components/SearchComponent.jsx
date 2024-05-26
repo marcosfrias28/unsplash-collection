@@ -12,6 +12,9 @@ export function SearchComponent(props) {
   function handleSubmit(event) {
     if (location.href === "/search") {
       event.preventDefault();
+    } else {
+      event.preventDefault();
+      location.href = "/search";
     }
     setKeywords(input);
     getImages();
@@ -19,7 +22,6 @@ export function SearchComponent(props) {
   return (
     <form
       {...props}
-      action="/search"
       style={{viewTransitionName: 'search-form'}}
       onSubmit={handleSubmit}
       className="w-full max-w-xl mx-auto"

@@ -25,13 +25,23 @@ const { title, description }: Props = Astro.props;
       <slot />
     </main>
     <footer></footer>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
     <style is:global>
       body {
-        font-family: system-ui, sans-serif;
+        font-family: "Onest", system-ui, sans-serif;
         line-height: 1.5;
         height: 100dvh;
         background-color: white;
         color: rgba(128, 128, 128, 0.797);
+        font-optical-sizing: auto;
+        font-weight: <weight>;
+        font-style: normal;
       }
 
       @media (prefers-color-scheme: dark) {

@@ -13,16 +13,26 @@ function NavItem({ id, item, isChecked, onChange }) {
           className="transition-colors has-[input:checked]:bg-cleargray has-[input:checked]:text-gray-900 text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white px-4 py-2 rounded-lg dark:hover:bg-white/20"
           href={item.href}
           ><label>
-            <input className={`${isChecked ? 'checked' : ''}`} type="radio" name="nav-item" />{item.name}
+            <input checked={isChecked} type="radio" name="nav-item" />{item.name}
           </label></a>
       </li>
     )
 }
 
 export const Navlist = () => {
-    const [checkedID, setCheckedID] = useState('item1');
+    const [checkedID, setCheckedID] = useState('');
   ///
     const handleChecked = (e) => {
+      switch (location.href) {
+        case value:
+          
+          break;
+          
+          default:
+            break;
+          }
+          e.preventDefault();
+          console.log(location.href);
       setCheckedID(e.currentTarget.id);
     };
   ///
