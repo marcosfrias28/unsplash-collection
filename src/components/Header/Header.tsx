@@ -36,10 +36,10 @@ const Navbar = () => {
         <div
           className="transition-all flex justify-between items-center mx-5 sm:mx-20 gap-5 sm:gap-0"
         >
-          <a href="/">
+          <div>
             <span className="sr-only">Home</span>
             <Logo className="fill-[#101828] dark:fill-white" />
-          </a>
+          </div>
           <div className="flex space-x-1 sm:space-x-4">
             {
               navlistOptions.map((item, i) => (

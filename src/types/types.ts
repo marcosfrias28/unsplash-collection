@@ -1,4 +1,5 @@
 import type { SetStateAction } from "react";
+import type { Result } from "./response";
 
 export interface collection {
   id: string;
@@ -21,7 +22,7 @@ export interface mediaTypes {
   defaultResults: any[];
   searchResults: any[];
   collectionPhotos: any[];
-  selectedImage: object | null;
+  selectedImage: Result | null;
   setKeywords: (keywords: string) => void;
   setCollectionPhotos: (collectionPhotos: any[]) => void;
   getImages: () => void;

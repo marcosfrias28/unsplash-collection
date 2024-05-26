@@ -85,7 +85,7 @@ const { id } = Astro.params;
           Collections
         </h3>
         <section>
-          <CollectionList client:visible />
+          <CollectionList id={id} client:visible />
         </section>
       </section>
     </article>
