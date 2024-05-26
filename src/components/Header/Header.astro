@@ -1,18 +1,43 @@
 ---
 import Logo from "../icons/Logo.astro";
-import { Navlist } from "./NavList";
+
+const navlistOptions = [
+  { name: "Home", href: "/" },
+  { name: "Collections", href: "/collections" },
+  { name: "Search", href: "/search" },
+];
 ---
 
 <header class="relative top-0 pt-5 max-w-[1440px] mx-auto z-50">
   <div
-    transition:persist
     class="transition-all flex justify-between items-center mx-5 sm:mx-20 gap-5 sm:gap-0"
   >
     <a href="/">
       <span class="sr-only">Home</span>
       <Logo class="fill-[#101828] dark:fill-white" />
     </a>
-    <Navlist client:load />
+    <ul class="flex space-x-1 sm:space-x-4">
+      {
+        navlistOptions.map((item, i) => (
+          <li>
+            <a href={item.href}>
+              <label
+                for={`${i}`}
+                class="transition-colors has-[input:checked]:bg-cleargray has-[input:checked]:text-gray-900 text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white px-4 py-2 rounded-lg dark:hover:bg-white/20"
+              >
+                {item.name}
+              </label>
+              <input
+                id={`${i}`}
+                type="radio"
+                name="nav-item"
+                transition:persist
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </header>
 <hr class="border-1 border-gray-300 mt-5 w-full" />
