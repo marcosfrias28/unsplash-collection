@@ -1,3 +1,4 @@
+import { check } from "astro/jsx/server.js";
 import { useEffect, useState } from "react"
 
 const navlistOptions = [
@@ -6,14 +7,14 @@ const navlistOptions = [
     { name: 'Search', href: '/search' },
 ]
 
-function NavItem({ id, item, isChecked, onChange }) {
+function NavItem({ id, item, onChange }) {
     return (
     <li id={id} onClick={onChange} >
         <a
           className="transition-colors has-[input:checked]:bg-cleargray has-[input:checked]:text-gray-900 text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white px-4 py-2 rounded-lg dark:hover:bg-white/20"
           href={item.href}
           ><label>
-            <input checked={isChecked} type="radio" name="nav-item" />{item.name}
+            <input type="radio" name="nav-item" />{item.name}
           </label></a>
       </li>
     )
