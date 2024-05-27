@@ -3,11 +3,7 @@ import type { GetStaticPaths } from "astro";
 import Layout from "@/layouts/Layout.astro";
 import CollectionList from "@/components/details/CollectionList.tsx";
 import SelectedImage from "@/components/details/SelectedImage.jsx";
-import {
-  AuthorName,
-  PhotoProfile,
-  PublishedDate,
-} from "@/components/details/Author.jsx";
+import { AuthorProfile, PublishedDate } from "@/components/details/Author.jsx";
 import AddToCollection from "@/components/details/AddToCollection.jsx";
 import Download from "@/components/details/Download.jsx";
 import Remove from "@/components/details/RemoveCollection.jsx";
@@ -15,44 +11,39 @@ import Remove from "@/components/details/RemoveCollection.jsx";
 const { id } = Astro.params;
 ---
 
-<script is:inline>
-  const $returnBtn = document.querySelector("#return-search");
-  $returnBtn.addEventListener("click", () => {
-    window.history.back();
-  });
-</script>
-
 <Layout
   title="Unsplash Collections - Images preview and download"
   description="Unsplash Collections"
 >
   <section
-    class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-[1fr,0.5fr] mx-auto grid-row-1 max-w-[1280px] px-5 mt-28 gap-5 xl:gap-10 place-content-center"
+    class="grid grid-cols-1 xl:grid-cols-[auto,1fr,0.6fr] mx-auto max-w-[1280px] gap-5 w-fit h-full px-5 mt-28 place-content-center"
   >
+    <button
+      onclick="window.history.back()"
+      id="return-search"
+      class="h-16 w-16 cursor-pointer absolute xl:relative top-28 xl:top-0 xl:place-self-start hover:scale-110 transition-[scale]"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="64"
+        height="64"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-corner-up-left"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M18 18v-6a3 3 0 0 0 -3 -3h-10l4 -4m0 8l-4 -4"></path></svg
+      >
+    </button>
+
     <picture
       id=`image-${id}`
       transition:name=`image-${id}`
-      class="relative w-fit md:w-[650px] h-[900px] bg-cleargray place-self-center dark:bg-zinc-800 transition-color rounded-lg"
+      class="relative w-fit md:w-[650px] h-[900px] col-start-2 bg-cleargray place-self-center dark:bg-zinc-800 transition-color rounded-lg"
     >
-      <div
-        id="return-search"
-        class="absolute z-50 h-16 w-16 -top-20 cursor-pointer"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="64"
-          height="64"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-corner-up-left"
-          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-            d="M18 18v-6a3 3 0 0 0 -3 -3h-10l4 -4m0 8l-4 -4"></path></svg
-        >
-      </div>
       <SelectedImage
         className=" hover:scale-100 pointer-events-none"
         id={id}
@@ -63,16 +54,13 @@ const { id } = Astro.params;
     </picture>
 
     <article
-      class="max-w-[650px] w-full place-self-center xl:place-self-start xl:mt-10 flex flex-col gap-2"
+      class="max-w-[650px] w-full place-self-center col-start-2 xl:col-start-3 xl:place-self-start xl:mt-10 flex flex-col gap-2"
     >
-      <picture class="flex flex-row gap-4 items-center">
-        <PhotoProfile client:visible />
-        <AuthorName client:visible />
-      </picture>
-      <PublishedDate client:visible />
+      <AuthorProfile client:load />
+      <PublishedDate client:load />
       <div class="flex flex-row gap-4 flex-wrap">
-        <AddToCollection client:visible />
-        <Download client:visible />
+        <AddToCollection client:load />
+        <Download client:load />
       </div>
       <section id="Collections">
         <h3 class="text-2xl font-semibold text-black dark:text-white my-3">
