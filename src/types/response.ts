@@ -8,35 +8,35 @@
 // match the expected interface, even if the JSON is valid.
 
 export type Welcome = {
-    total:      number;
+    total: number;
     totalPages: number;
-    results:    Result[];
+    results: Result[];
 }
 
 export type Result = {
-    id:                     string;
-    slug:                   string;
-    alternativeSlugs:       AlternativeSlugs;
-    createdAt:              Date;
-    updatedAt:              Date;
-    promotedAt:             Date;
-    width:                  number;
-    height:                 number;
-    color:                  string;
-    blurHash:               string;
-    description:            null | string;
-    altDescription:         string;
-    breadcrumbs:            Breadcrumb[];
-    urls:                   Urls;
-    links:                  ResultLinks;
-    likes:                  number;
-    likedByUser:            boolean;
-    currentUserCollections: any[];
-    sponsorship:            null;
-    topicSubmissions:       ResultTopicSubmissions;
-    assetType:              AssetType;
-    user:                   User;
-    tags:                   Tag[];
+    id: string;
+    slug?: string;
+    alternativeSlugs?: AlternativeSlugs;
+    createdAt: Date;
+    updatedAt?: Date;
+    promotedAt?: Date;
+    width?: number;
+    height?: number;
+    color?: string;
+    blurHash?: string;
+    description?: null | string;
+    altDescription?: string;
+    breadcrumbs?: Breadcrumb[];
+    urls: Urls;
+    links: ResultLinks;
+    likes?: number;
+    likedByUser?: boolean;
+    currentUserCollections?: any[];
+    sponsorship?: null;
+    topicSubmissions?: ResultTopicSubmissions;
+    assetType?: AssetType;
+    user: User;
+    tags?: Tag[];
 }
 
 export type AlternativeSlugs = {
@@ -55,10 +55,10 @@ export enum AssetType {
 }
 
 export type Breadcrumb = {
-    slug:  string;
+    slug: string;
     title: string;
     index: number;
-    type:  Type;
+    type: Type;
 }
 
 export enum Type {
@@ -67,74 +67,74 @@ export enum Type {
 }
 
 export type ResultLinks = {
-    self:             string;
-    html:             string;
-    download:         string;
+    self: string;
+    html: string;
+    download: string;
     downloadLocation: string;
 }
 
 export type Tag = {
-    type:    Type;
-    title:   string;
+    type: Type;
+    title: string;
     source?: Source;
 }
 
 export type Source = {
-    ancestry:        Ancestry;
-    title:           string;
-    subtitle:        string;
-    description:     string;
-    metaTitle:       string;
+    ancestry: Ancestry;
+    title: string;
+    subtitle: string;
+    description: string;
+    metaTitle: string;
     metaDescription: string;
-    coverPhoto:      CoverPhoto;
+    coverPhoto: CoverPhoto;
 }
 
 export type Ancestry = {
-    type:         Category;
-    category:     Category;
+    type: Category;
+    category: Category;
     subcategory?: Category;
 }
 
 export type Category = {
-    slug:       string;
+    slug: string;
     prettySlug: string;
 }
 
 export type CoverPhoto = {
-    id:                     string;
-    slug:                   string;
-    alternativeSlugs:       AlternativeSlugs;
-    createdAt:              Date;
-    updatedAt:              Date;
-    promotedAt:             Date | null;
-    width:                  number;
-    height:                 number;
-    color:                  string;
-    blurHash:               string;
-    description:            null | string;
-    altDescription:         string;
-    breadcrumbs:            Breadcrumb[];
-    urls:                   Urls;
-    links:                  ResultLinks;
-    likes:                  number;
-    likedByUser:            boolean;
+    id: string;
+    slug: string;
+    alternativeSlugs: AlternativeSlugs;
+    createdAt: Date;
+    updatedAt: Date;
+    promotedAt: Date | null;
+    width: number;
+    height: number;
+    color: string;
+    blurHash: string;
+    description: null | string;
+    altDescription: string;
+    breadcrumbs: Breadcrumb[];
+    urls: Urls;
+    links: ResultLinks;
+    likes: number;
+    likedByUser: boolean;
     currentUserCollections: any[];
-    sponsorship:            null;
-    topicSubmissions:       CoverPhotoTopicSubmissions;
-    assetType:              AssetType;
-    premium?:               boolean;
-    plus?:                  boolean;
-    user:                   User;
+    sponsorship: null;
+    topicSubmissions: CoverPhotoTopicSubmissions;
+    assetType: AssetType;
+    premium?: boolean;
+    plus?: boolean;
+    user: User;
 }
 
 export type CoverPhotoTopicSubmissions = {
-    nature?:           CoolTones;
-    wallpapers?:       CoolTones;
+    nature?: CoolTones;
+    wallpapers?: CoolTones;
     texturesPatterns?: CoolTones;
 }
 
 export type CoolTones = {
-    status:     Status;
+    status: Status;
     approvedOn: Date;
 }
 
@@ -143,65 +143,65 @@ export enum Status {
 }
 
 export type Urls = {
-    raw:     string;
-    full:    string;
+    raw: string;
+    full: string;
     regular: string;
-    small:   string;
-    thumb:   string;
+    small: string;
+    thumb: string;
     smallS3: string;
 }
 
 export type User = {
-    id:                         string;
-    updatedAt:                  Date;
-    username:                   string;
-    name:                       string;
-    firstName:                  string;
-    lastName:                   string;
-    twitterUsername:            null | string;
-    portfolioURL:               null | string;
-    bio:                        null | string;
-    location:                   null | string;
-    links:                      UserLinks;
-    profileImage:               ProfileImage;
-    instagramUsername:          null | string;
-    totalCollections:           number;
-    totalLikes:                 number;
-    totalPhotos:                number;
-    totalPromotedPhotos:        number;
-    totalIllustrations:         number;
+    id: string;
+    updatedAt: Date;
+    username: string;
+    name: string;
+    firstName: string;
+    lastName: string;
+    twitterUsername: null | string;
+    portfolioURL: null | string;
+    bio: null | string;
+    location: null | string;
+    links: UserLinks;
+    profileImage: ProfileImage;
+    instagramUsername: null | string;
+    totalCollections: number;
+    totalLikes: number;
+    totalPhotos: number;
+    totalPromotedPhotos: number;
+    totalIllustrations: number;
     totalPromotedIllustrations: number;
-    acceptedTos:                boolean;
-    forHire:                    boolean;
-    social:                     Social;
+    acceptedTos: boolean;
+    forHire: boolean;
+    social: Social;
 }
 
 export type UserLinks = {
-    self:      string;
-    html:      string;
-    photos:    string;
-    likes:     string;
+    self: string;
+    html: string;
+    photos: string;
+    likes: string;
     portfolio: string;
     following: string;
     followers: string;
 }
 
 export type ProfileImage = {
-    small:  string;
+    small: string;
     medium: string;
-    large:  string;
+    large: string;
 }
 
 export type Social = {
     instagramUsername: null | string;
-    portfolioURL:      null | string;
-    twitterUsername:   null | string;
-    paypalEmail:       null;
+    portfolioURL: null | string;
+    twitterUsername: null | string;
+    paypalEmail: null;
 }
 
 export type ResultTopicSubmissions = {
-    coolTones?:         CoolTones;
-    nature?:            CoolTones;
+    coolTones?: CoolTones;
+    nature?: CoolTones;
     streetPhotography?: CoolTones;
 }
 
@@ -269,7 +269,7 @@ function transform(val: any, typ: any, getProps: any, key: any = '', parent: any
             const typ = typs[i];
             try {
                 return transform(val, typ, getProps);
-            } catch (_) {}
+            } catch (_) { }
         }
         return invalidValue(typs, val, key, parent);
     }
@@ -328,9 +328,9 @@ function transform(val: any, typ: any, getProps: any, key: any = '', parent: any
     if (Array.isArray(typ)) return transformEnum(typ, val);
     if (typeof typ === "object") {
         return typ.hasOwnProperty("unionMembers") ? transformUnion(typ.unionMembers, val)
-            : typ.hasOwnProperty("arrayItems")    ? transformArray(typ.arrayItems, val)
-            : typ.hasOwnProperty("props")         ? transformObject(getProps(typ), typ.additional, val)
-            : invalidValue(typ, val, key, parent);
+            : typ.hasOwnProperty("arrayItems") ? transformArray(typ.arrayItems, val)
+                : typ.hasOwnProperty("props") ? transformObject(getProps(typ), typ.additional, val)
+                    : invalidValue(typ, val, key, parent);
     }
     // Numbers can be parsed by Date but shouldn't be.
     if (typ === Date && typeof val !== "number") return transformDate(val);
