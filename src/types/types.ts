@@ -1,5 +1,5 @@
 import type { SetStateAction } from "react";
-import type { Result } from "./response";
+import type { Result, User } from "./response";
 
 export interface collection {
   id: string;
@@ -27,11 +27,5 @@ export interface mediaTypes {
   setCollectionPhotos: (collectionPhotos: any[]) => void;
   getImages: () => void;
   setLoading: (loading: boolean) => void;
-  setSelectedImage: (selectedImage: Result) => void;
-}
-export interface collectionTypes {
-  getImageCollections: (page: number) => SetStateAction<any>;
-  setLoading: (loading: boolean) => void;
-  loading: boolean;
-  firstRender: boolean;
+  getSelectedImage: (id: string) => void;
 }
