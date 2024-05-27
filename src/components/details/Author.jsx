@@ -3,14 +3,13 @@ import moment from "moment";
 
 export function AuthorProfile() {
   const selectedImage = useMediaStore((state) => state.selectedImage);
-  console.log(selectedImage?.user);
   return (
     <picture className="flex flex-row gap-4 items-center">
 
       <img
         className="w-12 h-12 rounded-full bg-slate-100"
         src={selectedImage?.user?.profile_image?.large}
-        alt="Photo profile of the Author / Owner of this photo"
+        alt="profile of the Author"
       />
       <a href={selectedImage?.user?.portfolio_url || 'https://unsplash.com/'} target="_blank" className="font-bold text-black dark:text-white text-lg hover:underline">
         {selectedImage?.user?.name}
