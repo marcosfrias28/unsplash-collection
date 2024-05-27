@@ -19,19 +19,6 @@ const { id } = Astro.params;
   title="Unsplash Collections - Images preview and download"
   description="Unsplash Collections"
 >
-  <script is:inline>
-    const id = Astro.params;
-    console.log(id);
-    const $modal = document.querySelector("#imageModal");
-    const $closeModal = document.querySelector("#closeModal");
-    const $picture = document.querySelector(`#image-${id}`);
-    $closeModal.addEventListener("click", () => {
-      $modal.classList.add("hidden");
-    });
-    $picture.addEventListener("click", () => {
-      $modal.classList.toggle("hidden");
-    });
-  </script>
   <section
     class="grid grid-cols-1 lg:grid-cols-2 grid-row-1 mx-auto max-w-[1280px] h-dvh px-7 pt-10 place-content-center"
   >
