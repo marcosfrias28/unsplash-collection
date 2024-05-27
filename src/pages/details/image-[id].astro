@@ -15,6 +15,13 @@ import Remove from "@/components/details/RemoveCollection.jsx";
 const { id } = Astro.params;
 ---
 
+<script is:inline>
+  const $returnBtn = document.querySelector("#return-search");
+  $returnBtn.addEventListener("click", () => {
+    window.history.back();
+  });
+</script>
+
 <Layout
   title="Unsplash Collections - Images preview and download"
   description="Unsplash Collections"
@@ -27,7 +34,10 @@ const { id } = Astro.params;
       transition:name=`image-${id}`
       class="relative w-fit md:w-[650px] h-[900px] bg-cleargray place-self-center dark:bg-zinc-800 transition-color rounded-lg"
     >
-      <div class="absolute h-16 w-16 -top-20 cursor-pointer">
+      <div
+        id="return-search"
+        class="absolute z-50 h-16 w-16 -top-20 cursor-pointer"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="64"
