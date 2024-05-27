@@ -5,6 +5,25 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Collections - UnsplashBox" description="">
     <section class="w-full h-full flex flex-col justify-center items-center">
+        <a
+            href="#header"
+            class="rounded-full bg-black dark:bg-white h-16 w-16 flex justify-center items-center fixed bottom-4 right-4 shadow-lg z-40"
+            ><svg
+                class="stroke-white dark:stroke-black"
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up"
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                    d="M12 5l0 14"></path><path d="M18 11l-6 -6"></path><path
+                    d="M6 11l6 -6"></path></svg
+            ></a
+        >
         <div
             class="text-center flex flex-col flex-nowrap gap-4 mt-14"
             id="collections-title"
@@ -25,3 +44,9 @@ import Layout from "../layouts/Layout.astro";
         <CollectionLayout client:load />
     </section>
 </Layout>
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
