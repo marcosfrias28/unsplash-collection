@@ -27,7 +27,7 @@ export interface mediaTypes {
   setCollectionPhotos: (collectionPhotos: any[]) => void;
   getImages: () => void;
   setLoading: (loading: boolean) => void;
-  setSelectedImage: (selectedImage: object) => void;
+  setSelectedImage: (selectedImage: Result) => void;
 }
 export interface collectionTypes {
   getImageCollections: (page: number) => SetStateAction<any>;
