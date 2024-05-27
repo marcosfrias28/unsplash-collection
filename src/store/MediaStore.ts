@@ -16,7 +16,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
   collectionPhotos: [],
   setKeywords: (keywords) => set({ keywords }, false, 'Keywords changes'),
   setCollectionPhotos: (collectionPhotos) => set({ collectionPhotos }, false, 'Photo Collections changes'),
-  setSelectedImage: (selectedImage) => set({ selectedImage: <Result>{} }, false, 'selectedImage'),
+  setSelectedImage: (selectedImage) => set({ selectedImage: selectedImage }, false, 'selectedImage'),
   setLoading: (loading) => set({ loading }, false, 'Loading'),
   getImages: () => {
     console.log("get searched Images");
@@ -24,7 +24,7 @@ export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) =>
     setLoading(true);
     api.search.getPhotos({ query: keywords, page: 1, perPage: 12 }).then(({ response }) => {
       const result = response.results.map(
-        ({ id, urls, links, alt_description, user, created_at }) => ({
+        ({ id, urls, user, links, created_at, alt_description }) => ({
           id: id,
           urls: {
             small: urls.small,
