@@ -1,26 +1,22 @@
 import { useMediaStore } from "@/store/MediaStore";
 import moment from "moment";
 
-export function PhotoProfile() {
+export function AuthorProfile() {
   const selectedImage = useMediaStore((state) => state.selectedImage);
+  console.log(selectedImage?.user);
   return (
-    <img
-      className="w-12 h-12 rounded-full bg-slate-100"
-      src={selectedImage?.user?.profileImage?.small}
-      alt="Photo profile of the Author / Owner of this photo"
-    />
-  );
-}
+    <picture class="flex flex-row gap-4 items-center">
 
-export function AuthorName() {
-  const selectedImage = useMediaStore((state) => state.selectedImage);
-
-  return (
-    <>
+      <img
+        className="w-12 h-12 rounded-full bg-slate-100"
+        src={selectedImage?.user?.profileImage?.large}
+        alt="Photo profile of the Author / Owner of this photo"
+      />
       <a href={selectedImage?.user?.portfolioURL || 'https://unsplash.com/'} target="_blank" className="font-bold text-black dark:text-white text-lg hover:underline">
         {selectedImage?.user?.name}
       </a>
-    </>
+
+    </picture>
   );
 }
 
