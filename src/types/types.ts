@@ -25,7 +25,7 @@ export interface mediaTypes {
   selectedImage: Result | null;
   setKeywords: (keywords: string) => void;
   setCollectionPhotos: (collectionPhotos: any[]) => void;
+  setSelectedImage: (selectedImage: any[]) => void;
   getImages: () => void;
   setLoading: (loading: boolean) => void;
-  getSelectedImage: (id: string) => void;
 }
