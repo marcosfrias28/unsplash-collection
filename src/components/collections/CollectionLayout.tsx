@@ -16,8 +16,18 @@ function CollectionLayout() {
   const setCollectionPhotos = useMediaStore(state => state.setCollectionPhotos)
 
   const getCollectionImages = useCallback((id: any) => {
-    console.log(id);
-    api.collections.getPhotos({ collectionId: id }).then(({ response }) => console.log(response.results))
+    setLoading(true);
+    api.collections.getPhotos({ collectionId: id, perPage: total_photos }).then(({ response }) => {
+      const result = response.results.map(({ id, urls }) => ({
+        id,
+        urls
+      })
+      )
+      setCollectionPhotos(result);
+      console.log(response.results);
+    }).catch(() => {
+      throw new Error("Error fetching collection photos");
+    }).finally(() => setLoading(false))
   }, [])
 
   const getCollections = useCallback(() => {
@@ -48,7 +58,7 @@ function CollectionLayout() {
   }, [currentPage])
 
   function handleClick(id: any, title: string, total_photos: number) {
-    getCollectionImages(id);
+    getCollectionImages(id, total_photos);
     location.href = `/collection/${title}?total_photos=${total_photos}`;
   }
   function handleScroll() {
