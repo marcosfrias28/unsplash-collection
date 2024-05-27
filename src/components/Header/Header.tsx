@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="relative top-0 pt-5 w-full max-w-[1280px] mx-auto z-50">
+      <nav id='header' className="relative top-0 pt-5 w-full max-w-[1280px] mx-auto z-50">
         <div
           className="transition-all flex justify-between items-center mx-5 sm:mx-20 gap-5 sm:gap-0"
         >
@@ -61,7 +61,7 @@ const Navbar = () => {
             }
           </div>
         </div>
-      </header>
+      </nav>
       <hr className="border-1 border-gray-300 mt-5 w-full" />
     </>
   );
