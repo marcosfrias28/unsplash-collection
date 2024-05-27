@@ -20,36 +20,31 @@ const { id } = Astro.params;
   description="Unsplash Collections"
 >
   <section
-    class="grid grid-cols-1 lg:grid-cols-2 grid-row-1 mx-auto max-w-[1280px] h-dvh px-7 pt-10 place-content-center"
+    class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-[1fr,0.5fr] mx-auto grid-row-1 max-w-[1280px] px-5 mt-28 gap-5 xl:gap-10 place-content-center"
   >
-    <div
-      transition:name={`image-${id} modal`}
-      id="imageModal"
-      class="hidden absolute mx-auto my-1/2 left-0 right-0 z-50 backdrop:blur-xl backdrop-brightness-50"
-    >
-      <div class="relative w-full h-full sm:w-3/4 sm:h-3/4">
-        <SelectedImage
-          className="hover:scale-100"
-          id={id}
-          url={undefined}
-          alt_description={undefined}
-          client:load
-        />
-        <button
-          id="closeModal"
-          class="absolute uppercase right-0 top-0 px-3 py-1 m-5 text-4xl font-black bg-black/20 rounded-xl"
-          >x</button
-        >
-      </div>
-    </div>
     <picture
       id=`image-${id}`
       transition:name=`image-${id}`
-      transition:name=`image-${id} modal`
-      class="w-full sm:w-[555px] h-[830px] bg-cleargray dark:bg-zinc-800 transition-color rounded-lg place-self-center"
+      class="relative w-fit md:w-[650px] h-[900px] bg-cleargray place-self-center dark:bg-zinc-800 transition-color rounded-lg"
     >
+      <div class="absolute h-16 w-16 -top-20 cursor-pointer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="64"
+          height="64"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-corner-up-left"
+          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+            d="M18 18v-6a3 3 0 0 0 -3 -3h-10l4 -4m0 8l-4 -4"></path></svg
+        >
+      </div>
       <SelectedImage
-        className="hover:scale-105"
+        className=" hover:scale-100 pointer-events-none"
         id={id}
         url={undefined}
         alt_description={undefined}
@@ -57,7 +52,9 @@ const { id } = Astro.params;
       />
     </picture>
 
-    <article class="sm:pl-10 place-self-start flex flex-col gap-5">
+    <article
+      class="max-w-[650px] w-full place-self-center xl:place-self-start xl:mt-10 flex flex-col gap-2"
+    >
       <picture class="flex flex-row gap-4 items-center">
         <PhotoProfile client:visible />
         <AuthorName client:visible />
