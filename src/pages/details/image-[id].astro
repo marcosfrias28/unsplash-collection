@@ -1,12 +1,10 @@
 ---
-import type { GetStaticPaths } from "astro";
 import Layout from "@/layouts/Layout.astro";
 import CollectionList from "@/components/details/CollectionList.tsx";
 import SelectedImage from "@/components/details/SelectedImage.jsx";
-import { AuthorProfile, PublishedDate } from "@/components/details/Author.jsx";
+import { AuthorProfile } from "@/components/details/Author.jsx";
 import AddToCollection from "@/components/details/AddToCollection.jsx";
 import Download from "@/components/details/Download.jsx";
-import Remove from "@/components/details/RemoveCollection.jsx";
 
 const { id } = Astro.params;
 ---
@@ -57,7 +55,6 @@ const { id } = Astro.params;
       class="w-full place-self-center col-start-2 xl:col-start-3 xl:place-self-start xl:mt-10 flex flex-col gap-2"
     >
       <AuthorProfile client:load />
-      <PublishedDate client:load />
       <div class="flex flex-row gap-4 flex-wrap">
         <AddToCollection client:load />
         <Download client:load />
