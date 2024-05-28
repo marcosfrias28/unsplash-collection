@@ -14,6 +14,7 @@ export interface collection {
   total_photos: number;
   published_at: string;
   photosAPI: string;
+  preview_photos: any[];
 }
 
 export interface mediaTypes {
