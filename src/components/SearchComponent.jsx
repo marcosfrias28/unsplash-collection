@@ -22,7 +22,7 @@ export function SearchComponent(props) {
       action="/search"
       style={{ viewTransitionName: 'search-form' }}
       onSubmit={handleSubmit}
-      className="w-full max-w-xl mx-auto"
+      className="w-full max-w-2xl mx-auto px-5 sm:px-0"
     >
       <label
         htmlFor="input-keywords"
@@ -30,14 +30,14 @@ export function SearchComponent(props) {
       >
         Search
       </label>
-      <div className="flex justify-between w-full text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <div className="flex justify-between text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <input
           onChange={(e) => setInput(e.target.value)}
           placeholder={"Enter your keywords..."}
           defaultValue={keywords || ""}
           type="search"
           id="input-keywords"
-          className="w-full p-6 rounded-lg border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="p-6 w-full border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
         />
         <button className="cursor-pointer mr-4 flex items-center ps-3">
