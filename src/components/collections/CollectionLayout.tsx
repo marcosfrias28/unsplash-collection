@@ -1,4 +1,4 @@
-import { API_KEY, useMediaStore } from "@/store/MediaStore";
+import { useMediaStore } from "@/store/MediaStore";
 import type { collection } from "@/types/types";
 import { api } from "@/utils/unsplash";
 import axios from "axios";

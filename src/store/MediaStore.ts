@@ -5,8 +5,6 @@ import type { mediaTypes } from "@/types/types";
 import { api } from "@/utils/unsplash";
 import type { Result } from "@/types/response";
 
-export let API_KEY = import.meta.env.PUBLIC_UNSPLASH_API_KEY;
-
 export const useMediaStore = create<mediaTypes>()(devtools(persist((set, get) => ({
   loading: true,
   keywords: "",
