@@ -31,31 +31,14 @@ function CollectionLayout() {
 
   const getCollections = useCallback(() => {
     setLoading(true);
-    api.collections.list({ page: currentPage, perPage: 12 }).then(({ response: CollectionList }) => {
-      const result = CollectionList.results.map(
-        ({ id, title, description, total_photos, published_at, user, cover_photo, links, preview_photos }) => ({
-          id,
-          title,
-          description,
-          cover: cover_photo.urls.regular,
-          user: {
-            name: user.name,
-            profile_image: user.profile_image.large,
-            portfolio_url: user.portfolio_url,
-          },
-          total_photos,
-          published_at,
-          photosAPI: links.photos,
-          preview_photos
-        })
-      );
-      setCollections(currentCollections => [...currentCollections, ...result]);
+    api.collections.list({ page: currentPage, perPage: 12 }).then(({ response }) => {
+      setCollections(currentCollections => [...currentCollections, ...response]);
     }).finally(() => setLoading(false))
   }, [currentPage])
 
   useEffect(() => {
     getCollections();
-  }, [currentPage])
+  }, [])
 
   function handleClick(id: any, title: string, total_photos: number) {
     getCollectionImages(id);
