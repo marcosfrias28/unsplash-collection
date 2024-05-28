@@ -2,6 +2,7 @@ import { API_KEY, useMediaStore } from "@/store/MediaStore";
 import type { collection } from "@/types/types";
 import { api } from "@/utils/unsplash";
 import axios from "axios";
+import { log } from "node_modules/astro/dist/core/logger/core";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 
 function getRandomPage() {
@@ -12,12 +13,11 @@ function CollectionLayout() {
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState<number>(getRandomPage())
   const [collections, setCollections] = useState<collection[]>([]);
-  const collectionPhotos = useMediaStore(state => state.collectionPhotos)
   const setCollectionPhotos = useMediaStore(state => state.setCollectionPhotos)
 
   const getCollectionImages = useCallback((id: any) => {
     setLoading(true);
-    api.collections.getPhotos({ collectionId: id, perPage: total_photos }).then(({ response }) => {
+    api.collections.getPhotos({ collectionId: id }).then(({ response }) => {
       const result = response.results.map(({ id, urls }) => ({
         id,
         urls
@@ -32,9 +32,9 @@ function CollectionLayout() {
 
   const getCollections = useCallback(() => {
     setLoading(true);
-    api.collections.list({ page: currentPage, perPage: 12 }).then(({ response }) => {
-      const result = response.results.map(
-        ({ id, title, description, total_photos, published_at, user, cover_photo, links }) => ({
+    api.collections.list({ page: currentPage, perPage: 12 }).then(({ response: CollectionList }) => {
+      const result = CollectionList.results.map(
+        ({ id, title, description, total_photos, published_at, user, cover_photo, links, preview_photos }) => ({
           id,
           title,
           description,
@@ -47,6 +47,7 @@ function CollectionLayout() {
           total_photos,
           published_at,
           photosAPI: links.photos,
+          preview_photos
         })
       );
       setCollections(currentCollections => [...currentCollections, ...result]);
@@ -58,7 +59,7 @@ function CollectionLayout() {
   }, [currentPage])
 
   function handleClick(id: any, title: string, total_photos: number) {
-    getCollectionImages(id, total_photos);
+    getCollectionImages(id);
     location.href = `/collection/${title}?total_photos=${total_photos}`;
   }
   function handleScroll() {
@@ -69,11 +70,18 @@ function CollectionLayout() {
     <>
       <div className="flex flex-wrap gap-8 max-w-[1280px] w-full h-full my-10 justify-center items-center">
         {collections && collections.map((collection) => {
-          const { id, cover, description, title, total_photos } = collection;
+          const { id, description, title, total_photos, preview_photos } = collection;
           return (
             <article key={id} className="mb-4">
-              <div className="group w-96 h-96 relative" onClick={() => handleClick(id, title, total_photos)} id={id}>
-                <img className="rounded-md object-cover object-center h-full w-full" src={cover} alt={description || title || "No description "} />
+              <div id={id} className="group w-96 h-96 grid grid-cols-2 grid-rows-2 rounded-lg overflow-hidden" onClick={() => handleClick(id, title, total_photos)} >
+                {
+                  preview_photos?.map((photo, i) => {
+                    if (i > 2) return;
+                    return (
+                      <img id={photo.id} key={photo.id} className={`${i === 0 ? 'row-span-2' : ''} object-cover object-center h-full w-full`} src={photo?.urls?.regular} alt={description || title || "No description "} />
+                    )
+                  })
+                }
               </div>
               <div className="flex flex-col gap-1 mt-3 overflow-clip w-96">
                 <p className="text-black dark:text-white font-bold text-lg">{title}</p>
