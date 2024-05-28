@@ -33,6 +33,7 @@ function CollectionLayout() {
   const getCollections = useCallback(() => {
     setLoading(true);
     api.collections.list({ page: currentPage, perPage: 12 }).then(({ response: CollectionList }) => {
+      console.log(CollectionList.results[0].preview_photos[0]);
       const result = CollectionList.results.map(
         ({ id, title, description, total_photos, published_at, user, cover_photo, links, preview_photos }) => ({
           id,
@@ -70,17 +71,17 @@ function CollectionLayout() {
     <>
       <div className="flex flex-wrap gap-8 max-w-[1280px] w-full h-full my-10 justify-center items-center">
         {collections && collections.map((collection) => {
-          const { id, description, title, total_photos, preview_photos } = collection;
+          const { id, cover, description, title, total_photos, preview_photos } = collection;
           return (
             <article key={id} className="mb-4">
               <div id={id} className="group w-96 h-96 grid grid-cols-2 grid-rows-2 rounded-lg overflow-hidden" onClick={() => handleClick(id, title, total_photos)} >
                 {
-                  preview_photos?.map((photo, i) => {
+                  preview_photos && preview_photos?.map((photo, i) => {
                     if (i > 2) return;
                     return (
-                      <img id={photo.id} key={photo.id} className={`${i === 0 ? 'row-span-2' : ''} object-cover object-center h-full w-full`} src={photo?.urls?.regular} alt={description || title || "No description "} />
+                      <img id={photo.id} key={photo.id} className={`${i === 0 ? 'row-span-2' : ''} object-cover object-center h-full w-full`} src={photo?.urls?.small} alt={description || title || "No description "} />
                     )
-                  })
+                  }) || <img className={`object-cover object-center h-full w-full`} src={cover} alt={description || title || "No description "} />
                 }
               </div>
               <div className="flex flex-col gap-1 mt-3 overflow-clip w-96">

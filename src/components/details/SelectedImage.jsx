@@ -1,6 +1,6 @@
 import { useMediaStore } from "@/store/MediaStore";
 
-function SelectedImage({ id, url, alt_description, className }) {
+function  SelectedImage({ id, url, alt_description, className }) {
   const selectedImage = useMediaStore((state) => state.selectedImage);
   const loading = useMediaStore((state) => state.loading);
   return (
