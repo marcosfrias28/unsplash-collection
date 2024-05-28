@@ -18,11 +18,10 @@ export function SearchComponent(props) {
   }
   return (
     <form
-      {...props}
       action="/search"
       style={{ viewTransitionName: 'search-form' }}
       onSubmit={handleSubmit}
-      className="w-full max-w-2xl mx-auto px-5 sm:px-0"
+      className="w-full max-w-2xl mx-auto px-5 sm:px-0 "
     >
       <label
         htmlFor="input-keywords"
@@ -30,19 +29,19 @@ export function SearchComponent(props) {
       >
         Search
       </label>
-      <div className="flex justify-between text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <div className="flex justify-between text-sm border overflow-hidden border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <input
           onChange={(e) => setInput(e.target.value)}
           placeholder={"Enter your keywords..."}
           defaultValue={keywords || ""}
           type="search"
           id="input-keywords"
-          className="p-6 w-full border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="p-5 w-full border-gray-300 bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
         />
-        <button className="cursor-pointer mr-4 flex items-center ps-3">
+        <button className="text-gray-400 cursor-pointer mr-4 flex items-center ps-3">
           <svg
-            className="w-6 h-6 text-gray-400 stroke-black dark:stroke-white"
+            className="w-6 h-6  stroke-gray-400 dark:stroke-white"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
