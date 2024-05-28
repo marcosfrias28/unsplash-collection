@@ -72,7 +72,7 @@ function CollectionLayout() {
           const { id, cover, description, title, total_photos, preview_photos } = collection;
           return (
             <article key={id} className="mb-4">
-              <div id={id} className="group w-96 h-96 grid grid-cols-2 grid-rows-2 rounded-lg overflow-hidden" onClick={() => handleClick(id, title, total_photos)} >
+              <div id={id} className="group w-96 h-96 grid grid-cols-2 grid-rows-2 gap-1 hover:scale-105 transition-all rounded-lg overflow-hidden" onClick={() => handleClick(id, title, total_photos)} >
                 {
                   preview_photos && preview_photos?.map((photo, i) => {
                     if (i > 2) return;
