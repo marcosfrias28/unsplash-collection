@@ -4,7 +4,7 @@ function Download() {
   const selectedImage = useMediaStore((state) => state.selectedImage);
   return (
     <a
-      href={selectedImage?.link}
+      href={selectedImage?.links?.download}
       target="_blank"
       className="rounded-md cursor-pointer group flex flex-row gap-2 bg-cleargray text-black px-4 py-2 items-center justify-center"
     >
