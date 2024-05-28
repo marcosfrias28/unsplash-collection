@@ -16,7 +16,7 @@ const { id } = Astro.params;
   description="Unsplash Collections"
 >
   <section
-    class="grid grid-cols-1 xl:grid-cols-[auto,1fr,0.6fr] mx-auto max-w-[1280px] gap-5 w-fit h-full px-5 mt-28 place-content-center"
+    class="grid grid-cols-1 xl:grid-cols-[auto,1fr,0.6fr] mx-auto max-w-[1600px] gap-y-7 sm:gap-10 w-fit h-full px-5 mt-28 place-content-center"
   >
     <button
       onclick="window.history.back()"
@@ -54,7 +54,7 @@ const { id } = Astro.params;
     </picture>
 
     <article
-      class="max-w-[650px] w-full place-self-center col-start-2 xl:col-start-3 xl:place-self-start xl:mt-10 flex flex-col gap-2"
+      class="w-full place-self-center col-start-2 xl:col-start-3 xl:place-self-start xl:mt-10 flex flex-col gap-2"
     >
       <AuthorProfile client:load />
       <PublishedDate client:load />

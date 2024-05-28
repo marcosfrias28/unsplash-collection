@@ -5,10 +5,11 @@ export function ImagesLayout({ layout }) {
   const defaultResults = useMediaStore((state) => state.defaultResults);
   const searchResults = useMediaStore((state) => state.searchResults);
   const setSelectedImage = useMediaStore(state => state.setSelectedImage)
+  const loading = useMediaStore(state => state.loading)
   const gallery = searchResults.length >= 1 ? searchResults : defaultResults;
-
   return (
     <>
+      {searchResults.length <= 1 && !loading && (<span className="animated-bg col-span-full bg-[]">We didn't find any images with these keywords inserted, we'll show you our 12 Default images, in the meantime try again with other keywords</span>)}
       {gallery.map((actualImage, i) => {
         const { id, urls, alt_description } = actualImage;
         return (

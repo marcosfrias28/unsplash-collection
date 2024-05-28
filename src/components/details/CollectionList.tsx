@@ -6,9 +6,7 @@ function CollectionList({ id }) {
     const [relatedCollections, setRelatedCollections] = useState<any[]>([])
 
     useEffect(() => {
-        console.log('Collection list');
         api.photos.get({ photoId: id }).then(({ response }) => {
-            console.log(response.related_collections.results[0].preview_photos);
             setRelatedCollections(response?.related_collections?.results)
         })
     }, []);

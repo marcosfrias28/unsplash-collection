@@ -24,7 +24,6 @@ function CollectionLayout() {
       })
       )
       setCollectionPhotos(result);
-      console.log(response.results);
     }).catch(() => {
       throw new Error("Error fetching collection photos");
     }).finally(() => setLoading(false))
@@ -33,7 +32,6 @@ function CollectionLayout() {
   const getCollections = useCallback(() => {
     setLoading(true);
     api.collections.list({ page: currentPage, perPage: 12 }).then(({ response: CollectionList }) => {
-      console.log(CollectionList.results[0].preview_photos[0]);
       const result = CollectionList.results.map(
         ({ id, title, description, total_photos, published_at, user, cover_photo, links, preview_photos }) => ({
           id,
@@ -79,7 +77,7 @@ function CollectionLayout() {
                   preview_photos && preview_photos?.map((photo, i) => {
                     if (i > 2) return;
                     return (
-                      <img id={photo.id} key={photo.id} className={`${i === 0 ? 'row-span-2' : ''} object-cover object-center h-full w-full`} src={photo?.urls?.small} alt={description || title || "No description "} />
+                      <img id={photo.id} key={photo.id} className={`${i === 0 ? 'row-span-2' : ''} object-cover object-center h-full w-full`} src={photo?.urls?.thumb} alt={description || title || "No description "} />
                     )
                   }) || <img className={`object-cover object-center h-full w-full`} src={cover} alt={description || title || "No description "} />
                 }
