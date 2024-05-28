@@ -94,7 +94,7 @@ function CollectionLayout() {
       {loading && <div className="flex justify-center items-center mb-20">
         <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900 dark:border-white"></div>
       </div>}
-      <button onClick={handleScroll} className='animated-bg rounded-3xl px-2 py-3 mb-20 hover:scale-105 transition-all bg-[url("/gradiend-bg@2x.png")] bg-cover bg-center bg-no-repeat w-fit mx-auto' ><span className="bg-white text-black px-5 py-2 rounded-3xl font-bold">Load more results</span></button >
+      <button onClick={handleScroll} className='animated-bg rounded-3xl px-2 py-3 mb-20 hover:scale-105 transition-all w-fit mx-auto' ><span className="bg-white text-black px-5 py-2 rounded-3xl font-bold">Load more results</span></button >
     </>
   )
 }
