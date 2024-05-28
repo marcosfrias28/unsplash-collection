@@ -9,7 +9,7 @@ export function ImagesLayout({ layout }) {
   const gallery = searchResults.length >= 1 ? searchResults : defaultResults;
   return (
     <>
-      {searchResults.length <= 1 && !loading && (<span className="animated-bg col-span-full bg-[]">We didn't find any images with these keywords inserted, we'll show you our 12 Default images, in the meantime try again with other keywords</span>)}
+      {searchResults.length <= 1 && !loading && (<span className="text-center text-2xl md:text-3xl text-pretty lg:text-5xl animated-bg col-span-full bg-[]">We didn't find any images with these keywords inserted.</span>)}
       {gallery.map((actualImage, i) => {
         const { id, urls, alt_description } = actualImage;
         return (
